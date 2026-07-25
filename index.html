@@ -2524,18 +2524,20 @@ function doPost(e) {
       async function saveSheets() {
         const url = getSheetURL();
         if (!url) {
-          toast('⚠️ اول آدرس Apps Script را تنظیم کنید', 'er');
+          toast('⚠️ اول آدرس را تنظیم کنید', 'er');
           setSheetURL();
           return;
         }
         const d = collect();
         const filledRows = d.rows.filter((r) => r.date || r.start);
         if (!filledRows.length) {
-          toast('ردیف پر شده‌ای وجود ندارد', 'er');
+          toast('ردیفی وجود ندارد', 'er');
           return;
         }
+
         document.getElementById('sDot').className = 'dot sy';
         document.getElementById('sTxt').textContent = 'ارسال...';
+
         let ok = 0,
           fail = 0;
         for (const r of filledRows) {
@@ -2543,7 +2545,7 @@ function doPost(e) {
             await fetch(url, {
               method: 'POST',
               mode: 'no-cors',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 'Content-Type': 'text/plain' },
               body: JSON.stringify({
                 type: 'row',
                 row: { ...r, day: sDay(r.date), sd: undefined },
@@ -2554,9 +2556,10 @@ function doPost(e) {
             fail++;
           }
         }
+
         if (!fail) {
           document.getElementById('sDot').className = 'dot on';
-          document.getElementById('sTxt').textContent = 'ارسال شد';
+          document.getElementById('sTxt').textContent = '✅ ارسال شد';
           toast('✅ ' + ok + ' ردیف ارسال شد', 'ok');
         } else {
           document.getElementById('sDot').className = 'dot off';
@@ -2724,19 +2727,42 @@ function doPost(e) {
       async function init() {
         await oDB();
         const ld = await ldL();
-        if (!ld || !document.querySelectorAll('.dc').length)
+
+        // Try to sync from Google Sheets
+        const url = getSheetURL();
+        if (url) {
+          try {
+            const resp = await fetch(url);
+            const data = await resp.json();
+            if (data.status === 'ok' && data.rows && data.rows.length > 0) {
+              // If local is empty or older, use sheets data
+              if (!ld || !document.querySelectorAll('.dc').length) {
+                const sheetData = {
+                  info: {},
+                  st: {
+                    notes: false,
+                    brk: false,
+                    pInfo: true,
+                    pEmpty: false,
+                    pSum: true,
+                    printToggles: {},
+                  },
+                  rows: data.rows,
+                };
+                loadD(sheetData);
+                toast('☁️ داده‌ها از Google Sheets بارگذاری شد', 'ok');
+              }
+            }
+          } catch (e) {
+            console.log('Sheets sync skipped:', e.message);
+          }
+        }
+
+        if (!document.querySelectorAll('.dc').length)
           for (let i = 0; i < 3; i++) addRow();
         uS();
-        setTimeout(() => toast('🟣 فرم حضور کارآموزی آماده است', 'in'), 300);
+        setTimeout(() => toast('🟣 فرم آماده است', 'in'), 300);
       }
-      window.addEventListener('beforeunload', () => {
-        try {
-          const d = collect(),
-            j = JSON.stringify(d);
-          localStorage.setItem(SK, j);
-        } catch (e) {}
-      });
-      document.addEventListener('DOMContentLoaded', init);
     </script>
   </body>
 </html>
