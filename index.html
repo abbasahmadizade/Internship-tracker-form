@@ -18,7 +18,6 @@
       :root {
         --bg: #1c1730;
         --bg2: #241e3d;
-        --bg3: #2c2550;
         --card: rgba(36, 30, 61, 0.93);
         --p: #a78bfa;
         --p2: #c4b5fd;
@@ -37,7 +36,7 @@
       }
       body {
         font-family: var(--f);
-        background: linear-gradient(140deg, #161229, #1c1730, #221e3a);
+        background: linear-gradient(140deg, #161229, #1c1730, #221e38);
         color: var(--t);
         min-height: 100vh;
         line-height: 1.6;
@@ -48,7 +47,7 @@
         padding: 16px 12px;
       }
 
-      /* ===== HEADER ===== */
+      /* Header */
       .hdr {
         text-align: center;
         padding: 18px 16px;
@@ -86,7 +85,7 @@
         margin-top: 2px;
       }
 
-      /* ===== CARD ===== */
+      /* Card */
       .cd {
         background: var(--card);
         border: 1px solid var(--brd);
@@ -101,12 +100,9 @@
         margin-bottom: 10px;
         padding-bottom: 7px;
         border-bottom: 1px solid var(--brd);
-        display: flex;
-        align-items: center;
-        gap: 6px;
       }
 
-      /* ===== INFO FORM ===== */
+      /* Form */
       .fg {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -150,7 +146,7 @@
         color: var(--t3);
       }
 
-      /* ===== SETTINGS ===== */
+      /* Toggles */
       .tgs {
         display: flex;
         flex-wrap: wrap;
@@ -170,7 +166,7 @@
         height: 14px;
       }
 
-      /* ===== PAGE CONTAINER ===== */
+      /* Page */
       .page {
         background: var(--card);
         border: 1px solid var(--brd);
@@ -178,22 +174,8 @@
         padding: 14px;
         margin-bottom: 12px;
       }
-      .page-t {
-        font-size: 0.85em;
-        font-weight: 700;
-        color: var(--p2);
-        margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .page-t span {
-        font-size: 0.75em;
-        color: var(--t3);
-        font-weight: 400;
-      }
 
-      /* ===== TABLE ===== */
+      /* Table */
       .tw {
         overflow-x: auto;
         border-radius: var(--r);
@@ -203,7 +185,7 @@
         width: 100%;
         border-collapse: collapse;
         font-size: 0.8em;
-        min-width: 680px;
+        table-layout: fixed;
       }
       thead th {
         background: rgba(124, 58, 237, 0.15);
@@ -215,14 +197,34 @@
         font-size: 0.75em;
         white-space: nowrap;
       }
+      .col-n {
+        width: 30px;
+      }
+      .col-date {
+        width: 105px;
+      }
+      .col-day {
+        width: 62px;
+      }
+      .col-time {
+        width: 70px;
+      }
+      .col-dur {
+        width: 52px;
+      }
+      .col-loc {
+        width: 80px;
+      }
+      .col-desc {
+        width: auto;
+      }
+
       tbody td {
         padding: 2px 2px;
         text-align: center;
         border-bottom: 1px solid rgba(167, 139, 250, 0.06);
         vertical-align: middle;
-      }
-      tbody tr:nth-child(even) {
-        background: rgba(167, 139, 250, 0.02);
+        overflow: hidden;
       }
       tbody .fi {
         border: none;
@@ -230,11 +232,27 @@
         text-align: center;
         padding: 4px 2px;
         font-size: 0.82em;
+        overflow: hidden;
       }
       tbody .fi:focus {
         background: rgba(28, 23, 48, 0.5);
         border: 1px solid var(--p);
       }
+
+      /* Textarea mini for loc & desc */
+      .ta-mini {
+        resize: none;
+        min-height: 30px;
+        max-height: 36px;
+        line-height: 1.2;
+        overflow: hidden;
+        white-space: pre-wrap !important;
+        word-break: break-word;
+        text-overflow: clip !important;
+        text-align: right !important;
+        font-size: 0.78em !important;
+      }
+
       .rn {
         background: rgba(167, 139, 250, 0.12);
         color: var(--p2);
@@ -253,8 +271,8 @@
         font-size: 0.85em;
         direction: ltr;
       }
-      .day {
-        font-size: 0.68em;
+      .day-text {
+        font-size: 0.78em;
         padding: 1px 4px;
         border-radius: 3px;
         white-space: nowrap;
@@ -271,17 +289,39 @@
         background: rgba(252, 165, 165, 0.08);
         color: var(--err);
       }
-      .desc-fi {
-        text-align: right !important;
-        font-size: 0.76em !important;
+
+      /* Time input - bigger touch target */
+      .time-wrap {
+        display: flex;
+        gap: 2px;
+        align-items: center;
+        justify-content: center;
+      }
+      .time-wrap input[type='text'] {
+        width: 22px;
+        text-align: center;
+        padding: 4px 1px;
+        font-size: 0.9em;
+        border: 1px solid var(--brd);
+        border-radius: 4px;
+        background: transparent;
+        color: var(--t);
+        font-family: var(--f);
+        outline: none;
+      }
+      .time-wrap input[type='text']:focus {
+        border-color: var(--p);
+        background: rgba(28, 23, 48, 0.5);
+      }
+      .time-wrap span {
+        color: var(--t3);
+        font-size: 0.8em;
+        font-weight: 700;
       }
 
-      /* Date cell */
+      /* Date */
       .date-cell {
         position: relative;
-      }
-      .date-cell .fi {
-        min-width: 80px;
       }
       .dc-today {
         padding: 2px 5px;
@@ -299,7 +339,7 @@
         color: #fff;
       }
 
-      /* ===== CALENDAR POPUP ===== */
+      /* Calendar */
       .cal-wrap {
         position: absolute;
         top: 100%;
@@ -373,12 +413,8 @@
         background: var(--p3);
         color: #fff;
       }
-      .cal-grid .cd-btn.off {
-        color: var(--t3);
-        opacity: 0.4;
-      }
 
-      /* ===== SIGNATURES SECTION ===== */
+      /* Signatures */
       .sigs {
         margin-top: 8px;
         border: 1px solid var(--brd);
@@ -405,11 +441,12 @@
       .sig-rn {
         font-size: 0.7em;
         color: var(--t3);
-        min-width: 30px;
+        min-width: 24px;
+        font-weight: 700;
       }
       .sig-name {
         flex: 1;
-        min-width: 80px;
+        min-width: 70px;
       }
       .sig-name input {
         font-size: 0.75em;
@@ -417,7 +454,7 @@
       }
       .sig-box {
         width: 72px;
-        height: 40px;
+        height: 42px;
         border: 1px dashed var(--brd);
         border-radius: 4px;
         cursor: pointer;
@@ -440,37 +477,8 @@
         font-size: 0.55em;
         color: var(--t3);
       }
-      .sig-name2 {
-        flex: 1;
-        min-width: 80px;
-      }
-      .sig-box2 {
-        width: 72px;
-        height: 40px;
-        border: 1px dashed var(--brd);
-        border-radius: 4px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.02);
-        flex-shrink: 0;
-      }
-      .sig-box2:hover {
-        border-color: var(--p);
-      }
-      .sig-box2 img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-      .sig-box2 .sph {
-        font-size: 0.55em;
-        color: var(--t3);
-      }
 
-      /* ===== EXTRA NOTES ===== */
+      /* Extra notes */
       .xnotes {
         margin-top: 6px;
         border: 1px solid var(--brd);
@@ -492,19 +500,23 @@
       .xn-row .xn-rn {
         font-size: 0.65em;
         color: var(--t3);
-        min-width: 28px;
+        min-width: 24px;
         padding-top: 4px;
+        font-weight: 700;
       }
       .xn-row textarea {
         flex: 1;
         font-size: 0.72em;
         padding: 3px 6px;
-        min-height: 28px;
-        max-height: 50px;
+        min-height: 24px;
+        max-height: 36px;
         resize: vertical;
       }
+      .xnotes.hide-xn {
+        display: none;
+      }
 
-      /* ===== SUMMARY ===== */
+      /* Summary */
       .sum {
         display: flex;
         flex-wrap: wrap;
@@ -530,7 +542,7 @@
         direction: ltr;
       }
 
-      /* ===== BUTTONS ===== */
+      /* Buttons */
       .bt {
         display: inline-flex;
         align-items: center;
@@ -577,7 +589,7 @@
         justify-content: center;
       }
 
-      /* ===== SIGN MODAL ===== */
+      /* Modal */
       .mo {
         position: fixed;
         inset: 0;
@@ -604,7 +616,7 @@
         margin-bottom: 6px;
         font-size: 0.95em;
       }
-      .mo-c p {
+      .mo-c > p {
         color: var(--t3);
         font-size: 0.75em;
         margin-bottom: 6px;
@@ -632,7 +644,15 @@
         margin-top: 8px;
       }
 
-      /* ===== TOAST ===== */
+      /* Save status */
+      .save-status {
+        text-align: center;
+        font-size: 0.7em;
+        color: var(--t3);
+        margin-top: 4px;
+      }
+
+      /* Toast */
       .tw-t {
         position: fixed;
         top: 10px;
@@ -674,23 +694,22 @@
         }
       }
 
-      /* ============ PRINT ============ */
+      /* ===== PRINT ===== */
       @media print {
         * {
           color: #000 !important;
           background: #fff !important;
           box-shadow: none !important;
           -webkit-text-fill-color: #000 !important;
-          border-color: #bbb !important;
           text-shadow: none !important;
+          font-family: 'Vazirmatn', sans-serif !important;
         }
         body {
-          font-size: 9pt;
-          line-height: 1.2;
+          font-size: 10pt;
+          line-height: 1.3;
           margin: 0;
           padding: 0;
         }
-
         .no-print,
         .acts,
         .tgs,
@@ -700,41 +719,38 @@
         .pt,
         .cal-wrap,
         #settingsCard,
-        .hdr p {
+        .hdr p,
+        .hdr::before,
+        .save-status {
           display: none !important;
         }
-
         .wrap {
           max-width: 100%;
           padding: 0;
           margin: 0;
         }
-
         .hdr {
           border: 2px solid #000;
+          border-radius: 0;
+          padding: 6px 10px;
+          margin-bottom: 4px;
+        }
+        .hdr h1 {
+          font-size: 13pt;
+          font-weight: 900;
+        }
+        .cd {
+          border: 1.5px solid #000;
           border-radius: 0;
           padding: 5px 8px;
           margin-bottom: 3px;
         }
-        .hdr::before {
-          display: none;
-        }
-        .hdr h1 {
-          font-size: 12pt;
-        }
-
-        /* Info */
-        .cd {
-          border: 1.5px solid #000;
-          border-radius: 0;
-          padding: 4px 6px;
-          margin-bottom: 2px;
-        }
         .cd-t {
-          font-size: 8.5pt;
-          border-bottom: 1px solid #000;
-          padding-bottom: 2px;
-          margin-bottom: 4px;
+          font-size: 9pt;
+          font-weight: 800;
+          border-bottom: 1.5px solid #000;
+          padding-bottom: 3px;
+          margin-bottom: 5px;
         }
         .fw.no-pdf {
           display: none !important;
@@ -744,99 +760,113 @@
         }
         .fg {
           grid-template-columns: repeat(4, 1fr);
-          gap: 2px;
+          gap: 3px;
         }
         .fw label {
-          font-size: 6pt;
+          font-size: 7pt;
+          font-weight: 700;
         }
         .fi {
           border: none !important;
-          padding: 0 2px !important;
-          font-size: 8pt !important;
+          border-bottom: 1px solid #ccc !important;
+          padding: 1px 3px !important;
+          font-size: 9pt !important;
           background: transparent !important;
+          border-radius: 0 !important;
         }
         .fi::placeholder {
           color: transparent !important;
         }
-
-        /* Pages */
         .page {
-          border: none;
-          border-radius: 0;
-          padding: 0;
-          margin-bottom: 0;
+          border: none !important;
+          border-radius: 0 !important;
+          padding: 0 !important;
+          margin: 0 0 2px 0 !important;
           page-break-after: always;
           page-break-inside: avoid;
         }
         .page:last-child {
           page-break-after: auto;
         }
-        .page-t {
-          font-size: 8pt;
-          margin-bottom: 2px;
-          padding: 2px 0;
-          border-bottom: 1px solid #ccc;
-        }
-        .page-t span {
-          font-size: 7pt;
-        }
-
-        /* Table */
         .tw {
           border: 1.5px solid #000;
           border-radius: 0;
           overflow: visible;
         }
         table {
-          min-width: auto !important;
-          font-size: 7.5pt;
+          font-size: 8.5pt;
+          table-layout: fixed;
+          width: 100%;
         }
         thead {
           display: table-header-group;
         }
         thead th {
-          background: #eee !important;
+          background: #e8e8e8 !important;
           color: #000 !important;
-          border-bottom: 1.5px solid #000 !important;
-          padding: 3px 2px;
-          font-size: 6.5pt;
+          border-bottom: 2px solid #000 !important;
+          padding: 4px 3px;
+          font-size: 7.5pt;
+          font-weight: 800;
         }
         tbody td {
-          padding: 1px 1px;
-          border-bottom: 1px solid #ccc !important;
+          padding: 3px 2px;
+          border-bottom: 1px solid #bbb !important;
+          overflow: hidden;
         }
         tbody .fi {
-          font-size: 7pt !important;
-          padding: 1px !important;
+          font-size: 8pt !important;
+          padding: 1px 2px !important;
           border: none !important;
+          border-bottom: none !important;
+        }
+        .ta-mini {
+          min-height: 18px !important;
+          max-height: 22px !important;
+          line-height: 1.1 !important;
+          font-size: 7pt !important;
+          overflow: hidden !important;
+          resize: none !important;
+          border: none !important;
+          background: transparent !important;
+          white-space: pre-wrap !important;
+          word-break: break-word !important;
+          padding: 1px 2px !important;
+        }
+        .time-text {
+          font-size: 8pt !important;
+          direction: ltr;
         }
         .rn {
-          background: #e0e0e0 !important;
+          background: #ddd !important;
           color: #000 !important;
-          width: 16px;
-          height: 16px;
-          font-size: 0.6em;
+          width: 18px;
+          height: 18px;
+          font-size: 7pt;
+          border: 1px solid #999;
         }
         .dur {
           color: #000 !important;
+          font-weight: 800;
+          font-size: 8.5pt;
         }
-        .day {
-          font-size: 0.5em;
+        .day-text {
+          font-size: 7.5pt !important;
+          padding: 1px 3px;
+          font-weight: 700;
           border: none !important;
+          background: transparent !important;
         }
-        .desc-fi {
-          font-size: 6.5pt !important;
-        }
-
-        /* Signatures */
         .sigs {
-          border: 1px solid #999;
-          padding: 4px;
+          border: 1.5px solid #000;
+          border-radius: 0;
+          padding: 4px 6px;
           margin-top: 4px;
         }
         .sigs-t {
-          font-size: 7pt;
-          margin-bottom: 3px;
+          font-size: 7.5pt;
+          font-weight: 800;
+          margin-bottom: 4px;
         }
         .sig-row {
           padding: 2px 0;
@@ -844,75 +874,82 @@
           border-bottom: 1px solid #ddd !important;
         }
         .sig-rn {
-          font-size: 6pt;
+          font-size: 7pt;
+          font-weight: 700;
         }
-        .sig-name input,
-        .sig-name2 input {
-          font-size: 6.5pt !important;
+        .sig-name input {
+          font-size: 7.5pt !important;
           border: none !important;
-          padding: 1px !important;
+          border-bottom: 1px solid #ccc !important;
+          padding: 1px 2px !important;
         }
-        .sig-box,
-        .sig-box2 {
-          width: 60px;
-          height: 34px;
-          border: 1px solid #aaa !important;
+        .sig-box {
+          width: 65px;
+          height: 36px;
+          border: 1px solid #999 !important;
           background: #fff !important;
+          border-radius: 0 !important;
         }
-        .sig-box img,
-        .sig-box2 img {
-          max-height: 30px;
+        .sig-box img {
+          max-height: 32px;
         }
-
-        /* Extra notes */
+        .sig-box .sph {
+          display: none !important;
+        }
         .xnotes {
           border: 1px solid #999;
-          padding: 3px;
+          border-radius: 0;
+          padding: 3px 5px;
           margin-top: 3px;
         }
-        .xnotes-t {
-          font-size: 6pt;
-        }
-        .xnotes.empty-xn {
+        .xnotes.hide-xn {
           display: none !important;
+        }
+        .xnotes-t {
+          font-size: 6.5pt;
+          font-weight: 700;
         }
         .xn-row {
           margin-bottom: 1px;
           gap: 2px;
         }
         .xn-row .xn-rn {
-          font-size: 5.5pt;
+          font-size: 6pt;
+          font-weight: 700;
         }
         .xn-row textarea {
-          font-size: 6pt !important;
+          font-size: 7pt !important;
           border: none !important;
-          padding: 1px !important;
+          border-bottom: 1px solid #ddd !important;
+          padding: 1px 2px !important;
           min-height: 14px !important;
-          max-height: 20px !important;
+          max-height: 18px !important;
+          resize: none !important;
+          overflow: hidden !important;
         }
-
-        /* Summary */
         .sum {
-          gap: 3px;
-          margin-top: 3px;
+          gap: 4px;
+          margin-top: 4px;
         }
         .sum-i {
-          padding: 2px 8px;
-          border: 1px solid #aaa;
+          padding: 3px 10px;
+          border: 1px solid #999;
+          border-radius: 0;
         }
         .sum-i .sl {
-          font-size: 5.5pt;
+          font-size: 6.5pt;
+          font-weight: 700;
         }
         .sum-i .sv {
-          font-size: 8pt;
+          font-size: 9pt;
+          font-weight: 900;
         }
-
         tr {
           page-break-inside: avoid;
         }
         @page {
           size: A4 portrait;
-          margin: 7mm 6mm;
+          margin: 8mm 7mm;
         }
       }
 
@@ -927,22 +964,22 @@
           width: 100%;
         }
         .sig-row {
-          flex-direction: row;
           flex-wrap: wrap;
+        }
+        .col-time {
+          width: 60px;
         }
       }
     </style>
   </head>
   <body>
     <div class="tw-t" id="TW"></div>
-
     <div class="wrap">
       <header class="hdr">
         <h1>📋 فرم حضور کارآموزی</h1>
         <p>ثبت ساعات حضور در کارگاه</p>
       </header>
 
-      <!-- Info -->
       <div class="cd" id="infoCard">
         <div class="cd-t">👤 مشخصات کارآموز</div>
         <div class="fg">
@@ -995,13 +1032,12 @@
         </div>
       </div>
 
-      <!-- Settings -->
       <div class="cd no-print" id="settingsCard">
         <div class="cd-t">⚙️ تنظیمات</div>
         <div class="tgs">
           <label class="tg"
-            ><input type="checkbox" id="tXnotes" onchange="rebuildPages()" />
-            توضیحات بیشتر</label
+            ><input type="checkbox" id="tXnotes" onchange="togXN()" /> توضیحات
+            بیشتر</label
           >
           <label class="tg"
             ><input type="checkbox" id="tEmpty" checked /> ردیف‌های خالی در
@@ -1010,21 +1046,17 @@
         </div>
       </div>
 
-      <!-- Pages container -->
       <div id="pagesWrap"></div>
 
-      <!-- Actions -->
       <div class="acts no-print">
         <button class="bt bt-p" onclick="addPage()">
-          ➕ افزودن ۸ ردیف (صفحه جدید)
+          ➕ صفحه جدید (۸ ردیف)
         </button>
         <button class="bt bt-p" onclick="doPrint()">🖨️ ذخیره PDF / چاپ</button>
-        <button class="bt bt-er bt-sm" onclick="clearAll()">
-          🗑️ پاک کردن همه
-        </button>
+        <button class="bt bt-s bt-sm" onclick="saveNow()">💾 ذخیره دستی</button>
+        <button class="bt bt-er bt-sm" onclick="clearAll()">🗑️ پاک کردن</button>
       </div>
 
-      <!-- Global summary -->
       <div class="sum" id="gSum">
         <div class="sum-i">
           <span class="sl">کل روزها</span><br /><span class="sv" id="gD"
@@ -1042,9 +1074,10 @@
           >
         </div>
       </div>
+
+      <div class="save-status" id="saveStatus">ذخیره نشده</div>
     </div>
 
-    <!-- Sign Modal -->
     <div class="mo" id="sigMo">
       <div class="mo-c">
         <h3>✍️ امضا</h3>
@@ -1065,636 +1098,594 @@
       style="display: none"
       onchange="onSF(event)"
     />
-
-    <!-- بخش ۲ از ۲ - جاوااسکریپت در پیام بعدی -->
-    <script>
-      // ============ SHAMSI ============
-      const DN = [
-        'یکشنبه',
-        'دوشنبه',
-        'سه‌شنبه',
-        'چهارشنبه',
-        'پنجشنبه',
-        'جمعه',
-        'شنبه',
-      ];
-      const WD = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه'];
-      const MN = [
-        'فروردین',
-        'اردیبهشت',
-        'خرداد',
-        'تیر',
-        'مرداد',
-        'شهریور',
-        'مهر',
-        'آبان',
-        'آذر',
-        'دی',
-        'بهمن',
-        'اسفند',
-      ];
-
-      function todayJ() {
-        const d = new Date(),
-          j = jalaali.toJalaali(d.getFullYear(), d.getMonth() + 1, d.getDate());
-        return {
-          jy: j.jy,
-          jm: j.jm,
-          jd: j.jd,
-          str:
-            j.jy +
-            '/' +
-            String(j.jm).padStart(2, '0') +
-            '/' +
-            String(j.jd).padStart(2, '0'),
-        };
-      }
-
-      function dayName(s) {
-        if (!s || s.length < 10) return '';
-        try {
-          const p = s.split('/'),
-            g = jalaali.toGregorian(+p[0], +p[1], +p[2]);
-          return DN[new Date(g.gy, g.gm - 1, g.gd).getDay()];
-        } catch (e) {
-          return '';
-        }
-      }
-
-      function jMonthLen(jy, jm) {
-        if (jm <= 6) return 31;
-        if (jm <= 11) return 30;
-        return jalaali.isLeapJalaaliYear(jy) ? 30 : 29;
-      }
-
-      function jDayOfWeek(jy, jm, jd) {
-        try {
-          const g = jalaali.toGregorian(jy, jm, jd);
-          return new Date(g.gy, g.gm - 1, g.gd).getDay();
-        } catch (e) {
-          return 0;
-        }
-      }
-
-      // ============ TIME ============
-      function t2m(t) {
-        if (!t) return 0;
-        const p = t.split(':');
-        return (+p[0] || 0) * 60 + (+p[1] || 0);
-      }
-      function m2t(m) {
-        m = Math.max(0, m);
-        return (
-          String(Math.floor(m / 60)).padStart(2, '0') +
-          ':' +
-          String(m % 60).padStart(2, '0')
-        );
-      }
-
-      // ============ STATE ============
-      let pageCount = 0,
-        curSigEl = null,
-        sCtx = null,
-        drawing = false;
-
-      // ============ BUILD PAGE ============
-      function addPage() {
-        pageCount++;
-        const pgNum = pageCount;
-        const showXN = document.getElementById('tXnotes').checked;
-
-        const div = document.createElement('div');
-        div.className = 'page';
-        div.dataset.page = pgNum;
-
-        let tableHTML = `
-    <div class="page-t">صفحه ${pgNum} <span>ردیف ${(pgNum - 1) * 8 + 1} تا ${pgNum * 8}</span></div>
-    <div class="tw"><table>
-      <thead><tr>
-        <th style="width:28px">#</th>
-        <th style="width:100px">تاریخ</th>
-        <th style="width:52px">روز</th>
-        <th style="width:58px">شروع</th>
-        <th style="width:58px">پایان</th>
-        <th style="width:52px">مدت</th>
-        <th style="width:80px">محل</th>
-        <th style="width:100px">شرح کار</th>
-      </tr></thead><tbody>`;
-
-        for (let i = 0; i < 8; i++) {
-          const rn = (pgNum - 1) * 8 + i + 1;
-          tableHTML += `
-      <tr data-rn="${rn}">
-        <td><span class="rn">${rn}</span></td>
-        <td class="date-cell">
-          <input class="fi fd" placeholder="تاریخ" maxlength="10" oninput="onDI(this)" onfocus="showCal(this)">
-          <button class="dc-today no-print" onclick="setTd(this)" type="button">امروز</button>
-        </td>
-        <td class="day-td"></td>
-        <td><input type="time" class="fi fs" onchange="calc(this)"></td>
-        <td><input type="time" class="fi fe" onchange="calc(this)"></td>
-        <td><span class="dur" data-dur></span></td>
-        <td><input class="fi floc" placeholder="محل"></td>
-        <td><input class="fi desc-fi" placeholder="شرح"></td>
-      </tr>`;
-        }
-
-        tableHTML += `</tbody></table></div>`;
-
-        // Signatures section
-        let sigsHTML = `<div class="sigs"><div class="sigs-t">امضاها</div>`;
-        for (let i = 0; i < 8; i++) {
-          const rn = (pgNum - 1) * 8 + i + 1;
-          sigsHTML += `
-      <div class="sig-row" data-srn="${rn}">
-        <span class="sig-rn">ردیف ${rn}</span>
-        <div class="sig-name"><input class="fi" placeholder="نام امضاکننده ۱"></div>
-        <div class="sig-box" data-sig="" onclick="openSig(this)"><span class="sph">امضا</span></div>
-        <div class="sig-name2"><input class="fi" placeholder="نام امضاکننده ۲"></div>
-        <div class="sig-box2" data-sig="" onclick="openSig(this)"><span class="sph">امضا</span></div>
-      </div>`;
-        }
-        sigsHTML += `</div>`;
-
-        // Extra notes section
-        let xnHTML = `<div class="xnotes${showXN ? '' : ' empty-xn'}" data-xn><div class="xnotes-t">توضیحات بیشتر</div>`;
-        for (let i = 0; i < 8; i++) {
-          const rn = (pgNum - 1) * 8 + i + 1;
-          xnHTML += `
-      <div class="xn-row" data-xrn="${rn}">
-        <span class="xn-rn">ردیف ${rn}:</span>
-        <textarea class="fi" placeholder="توضیحات ردیف ${rn}" rows="1"></textarea>
-      </div>`;
-        }
-        xnHTML += `</div>`;
-
-        // Summary for this page
-        let sumHTML = `
-    <div class="sum page-sum">
-      <div class="sum-i"><span class="sl">روزهای این صفحه</span><br><span class="sv ps-d">0</span></div>
-      <div class="sum-i"><span class="sl">ساعات این صفحه</span><br><span class="sv ps-h">00:00</span></div>
-    </div>`;
-
-        div.innerHTML = tableHTML + sigsHTML + xnHTML + sumHTML;
-        document.getElementById('pagesWrap').appendChild(div);
-        calcAll();
-      }
-
-      // ============ DATE INPUT ============
-      function onDI(inp) {
-        let v = inp.value;
-        // Convert Persian digits
-        v = v.replace(/[۰-۹]/g, (d) => {
-          const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
-          return String(persianDigits.indexOf(d));
-        });
-        v = v.replace(/[^\d\/]/g, '');
-        if (v.length === 4 && !v.includes('/')) v += '/';
-        else if (v.length === 7 && v.split('/').length === 2) v += '/';
-        if (v.length > 10) v = v.substring(0, 10);
-        inp.value = v;
-        if (v.length === 10) updateDay(inp);
-        hideCal();
-      }
-
-      function setTd(btn) {
-        const inp = btn.closest('.date-cell').querySelector('.fd');
-        inp.value = todayJ().str;
-        updateDay(inp);
-        hideCal();
-      }
-
-      function updateDay(inp) {
-        const tr = inp.closest('tr');
-        const td = tr.querySelector('.day-td');
-        const dn = dayName(inp.value);
-        if (!dn) {
-          td.innerHTML = '';
-          return;
-        }
-        const iw = WD.includes(dn);
-        if (dn === 'جمعه')
-          td.innerHTML = `<span class="day day-f">${dn}</span>`;
-        else if (!iw) td.innerHTML = `<span class="day day-e">${dn}</span>`;
-        else td.innerHTML = `<span class="day day-n">${dn}</span>`;
-      }
-
-      // ============ CALENDAR ============
-      let activeCal = null,
-        calYear = 0,
-        calMonth = 0;
-
-      function showCal(inp) {
-        hideCal();
-        const cell = inp.closest('.date-cell');
-        let wrap = cell.querySelector('.cal-wrap');
-        if (!wrap) {
-          wrap = document.createElement('div');
-          wrap.className = 'cal-wrap';
-          cell.appendChild(wrap);
-        }
-
-        // Determine initial year/month
-        const v = inp.value;
-        if (v && v.length === 10) {
-          const p = v.split('/');
-          calYear = +p[0];
-          calMonth = +p[1];
-        } else {
-          const t = todayJ();
-          calYear = t.jy;
-          calMonth = t.jm;
-        }
-
-        activeCal = { wrap, inp };
-        renderCal();
-        wrap.classList.add('show');
-
-        // Close on outside click
-        setTimeout(() => {
-          document.addEventListener('click', calOutside, { once: false });
-        }, 50);
-      }
-
-      function hideCal() {
-        if (activeCal) {
-          activeCal.wrap.classList.remove('show');
-          activeCal = null;
-        }
-        document.removeEventListener('click', calOutside);
-      }
-
-      function calOutside(e) {
-        if (
-          activeCal &&
-          !activeCal.wrap.contains(e.target) &&
-          e.target !== activeCal.inp
-        ) {
-          hideCal();
-        }
-      }
-
-      function renderCal() {
-        if (!activeCal) return;
-        const w = activeCal.wrap;
-        const t = todayJ();
-        const sel = activeCal.inp.value;
-        const mLen = jMonthLen(calYear, calMonth);
-
-        // Day of week for 1st of month (Shamsi week starts Saturday=6 in JS)
-        const firstDow = jDayOfWeek(calYear, calMonth, 1);
-        // Convert to Shamsi week: Sat=0, Sun=1, ..., Fri=6
-        const shamsiDow = (firstDow + 1) % 7;
-
-        let html = `
-    <div class="cal-nav">
-      <button type="button" onclick="calPrev()">◀</button>
-      <span>${MN[calMonth - 1]} ${calYear}</span>
-      <button type="button" onclick="calNext()">▶</button>
-    </div>
-    <div class="cal-grid">
-      <span class="ch">ش</span><span class="ch">ی</span><span class="ch">د</span>
-      <span class="ch">س</span><span class="ch">چ</span><span class="ch">پ</span><span class="ch">ج</span>`;
-
-        // Empty cells before 1st
-        for (let i = 0; i < shamsiDow; i++) {
-          html += `<span></span>`;
-        }
-
-        for (let d = 1; d <= mLen; d++) {
-          const ds =
-            calYear +
-            '/' +
-            String(calMonth).padStart(2, '0') +
-            '/' +
-            String(d).padStart(2, '0');
-          const isToday = calYear === t.jy && calMonth === t.jm && d === t.jd;
-          const isSel = ds === sel;
-          let cls = 'cd-btn';
-          if (isToday) cls += ' today';
-          if (isSel) cls += ' selected';
-          html += `<button type="button" class="${cls}" onclick="pickDate('${ds}')">${d}</button>`;
-        }
-
-        html += `</div>`;
-        w.innerHTML = html;
-      }
-
-      function calPrev() {
-        calMonth--;
-        if (calMonth < 1) {
-          calMonth = 12;
-          calYear--;
-        }
-        renderCal();
-      }
-
-      function calNext() {
-        calMonth++;
-        if (calMonth > 12) {
-          calMonth = 1;
-          calYear++;
-        }
-        renderCal();
-      }
-
-      function pickDate(ds) {
-        if (!activeCal) return;
-        activeCal.inp.value = ds;
-        updateDay(activeCal.inp);
-        hideCal();
-        calcAll();
-      }
-
-      // ============ TIME CALC ============
-      function calc(inp) {
-        const tr = inp.closest('tr');
-        const s = tr.querySelector('.fs').value;
-        const e = tr.querySelector('.fe').value;
-        const d = tr.querySelector('[data-dur]');
-        if (s && e) {
-          const diff = t2m(e) - t2m(s);
-          d.textContent = diff > 0 ? m2t(diff) : '00:00';
-        } else d.textContent = '';
-        calcAll();
-      }
-
-      function calcAll() {
-        let gDays = 0,
-          gMins = 0;
-
-        document.querySelectorAll('.page').forEach((pg) => {
-          let pDays = 0,
-            pMins = 0;
-          pg.querySelectorAll('tbody tr').forEach((tr) => {
-            const s = tr.querySelector('.fs')?.value;
-            const e = tr.querySelector('.fe')?.value;
-            if (s && e) {
-              const d = t2m(e) - t2m(s);
-              if (d > 0) {
-                pDays++;
-                pMins += d;
-              }
-            }
-          });
-          const psd = pg.querySelector('.ps-d');
-          const psh = pg.querySelector('.ps-h');
-          if (psd) psd.textContent = pDays;
-          if (psh) psh.textContent = m2t(pMins);
-          gDays += pDays;
-          gMins += pMins;
-        });
-
-        document.getElementById('gD').textContent = gDays;
-        document.getElementById('gH').textContent = m2t(gMins);
-        document.getElementById('gA').textContent = gDays
-          ? m2t(Math.round(gMins / gDays))
-          : '00:00';
-      }
-
-      // ============ TOGGLE EXTRA NOTES ============
-      function rebuildPages() {
-        const show = document.getElementById('tXnotes').checked;
-        document.querySelectorAll('[data-xn]').forEach((el) => {
-          el.classList.toggle('empty-xn', !show);
-        });
-      }
-
-      // ============ SIGNATURE ============
-      function openSig(box) {
-        const hasSig = box.dataset.sig;
-        if (hasSig) {
-          if (confirm('امضا حذف شود؟')) {
-            box.dataset.sig = '';
-            box.innerHTML = '<span class="sph">امضا</span>';
-          }
-          return;
-        }
-        curSigEl = box;
-        const choice = confirm('OK = امضای دستی\nCancel = آپلود عکس');
-        if (choice) {
-          openDraw();
-        } else {
-          document.getElementById('sfIn').click();
-        }
-      }
-
-      function openDraw() {
-        const mo = document.getElementById('sigMo');
-        mo.classList.add('sh');
-        const cv = document.getElementById('sCV'),
-          cw = document.getElementById('sCW');
-        requestAnimationFrame(() => {
-          const r = cw.getBoundingClientRect();
-          cv.width = r.width;
-          cv.height = r.height;
-          sCtx = cv.getContext('2d');
-          sCtx.fillStyle = '#fff';
-          sCtx.fillRect(0, 0, cv.width, cv.height);
-          sCtx.strokeStyle = '#1c1730';
-          sCtx.lineWidth = 2.5;
-          sCtx.lineCap = 'round';
-          sCtx.lineJoin = 'round';
-          drawing = false;
-
-          // Pointer events
-          cv.onpointerdown = function (e) {
-            drawing = true;
-            const p = gp(e, cv);
-            sCtx.beginPath();
-            sCtx.moveTo(p.x, p.y);
-            e.preventDefault();
-          };
-          cv.onpointermove = function (e) {
-            if (!drawing) return;
-            const p = gp(e, cv);
-            sCtx.lineTo(p.x, p.y);
-            sCtx.stroke();
-            e.preventDefault();
-          };
-          cv.onpointerup = function () {
-            drawing = false;
-          };
-          cv.onpointercancel = function () {
-            drawing = false;
-          };
-
-          // Touch fallback
-          cv.ontouchstart = function (e) {
-            if (e.touches.length !== 1) return;
-            e.preventDefault();
-            drawing = true;
-            const p = gp(e.touches[0], cv);
-            sCtx.beginPath();
-            sCtx.moveTo(p.x, p.y);
-          };
-          cv.ontouchmove = function (e) {
-            if (!drawing || e.touches.length !== 1) return;
-            e.preventDefault();
-            const p = gp(e.touches[0], cv);
-            sCtx.lineTo(p.x, p.y);
-            sCtx.stroke();
-          };
-          cv.ontouchend = function () {
-            drawing = false;
-          };
-        });
-      }
-
-      function gp(e, cv) {
-        const r = cv.getBoundingClientRect();
-        return {
-          x: (e.clientX - r.left) * (cv.width / r.width),
-          y: (e.clientY - r.top) * (cv.height / r.height),
-        };
-      }
-
-      function clrC() {
-        const cv = document.getElementById('sCV');
-        if (sCtx) {
-          sCtx.fillStyle = '#fff';
-          sCtx.fillRect(0, 0, cv.width, cv.height);
-        }
-      }
-
-      function saveSig() {
-        const cv = document.getElementById('sCV');
-        const du = cv.toDataURL('image/png');
-        if (curSigEl) {
-          curSigEl.dataset.sig = du;
-          curSigEl.innerHTML = '<img src="' + du + '">';
-        }
-        clsMo();
-        toast('امضا ثبت شد');
-      }
-
-      function onSF(e) {
-        const f = e.target.files[0];
-        if (!f) return;
-        if (f.size > 5 * 1024 * 1024) {
-          toast('حجم فایل زیاد!');
-          e.target.value = '';
-          return;
-        }
-        const r = new FileReader();
-        r.onload = function (ev) {
-          if (curSigEl) {
-            curSigEl.dataset.sig = ev.target.result;
-            curSigEl.innerHTML = '<img src="' + ev.target.result + '">';
-          }
-          toast('آپلود شد');
-        };
-        r.readAsDataURL(f);
-        e.target.value = '';
-      }
-
-      function clsMo() {
-        document.getElementById('sigMo').classList.remove('sh');
-      }
-      document.getElementById('sigMo').addEventListener('click', function (e) {
-        if (e.target.id === 'sigMo') clsMo();
-      });
-
-      // ============ PRINT ============
-      function doPrint() {
-        const showEmpty = document.getElementById('tEmpty').checked;
-        const showXN = document.getElementById('tXnotes').checked;
-
-        // Handle empty rows
-        if (!showEmpty) {
-          document.querySelectorAll('#pagesWrap tbody tr').forEach((tr) => {
-            const dt = tr.querySelector('.fd')?.value;
-            const st = tr.querySelector('.fs')?.value;
-            const en = tr.querySelector('.fe')?.value;
-            if (!dt && !st && !en) tr.classList.add('no-print');
-          });
-
-          // Also hide corresponding sig rows and xn rows
-          document
-            .querySelectorAll('#pagesWrap tbody tr.no-print')
-            .forEach((tr) => {
-              const rn = tr.dataset.rn;
-              const sigRow = document.querySelector(
-                '.sig-row[data-srn="' + rn + '"]',
-              );
-              if (sigRow) sigRow.classList.add('no-print');
-              const xnRow = document.querySelector(
-                '.xn-row[data-xrn="' + rn + '"]',
-              );
-              if (xnRow) xnRow.classList.add('no-print');
-            });
-        }
-
-        // Handle info field visibility
-        document.querySelectorAll('.fw[data-k]').forEach((w) => {
-          const cb = w.querySelector('.pt');
-          if (cb && !cb.checked) w.classList.add('no-pdf');
-          const inp = w.querySelector('.fi');
-          if (inp && !inp.value.trim()) w.classList.add('empty-opt');
-        });
-
-        // Handle extra notes visibility
-        if (!showXN) {
-          document
-            .querySelectorAll('[data-xn]')
-            .forEach((el) => el.classList.add('empty-xn'));
-        }
-
-        // Do print
-        window.print();
-
-        // Restore everything
-        setTimeout(function () {
-          document
-            .querySelectorAll('.no-print-temp,.no-print')
-            .forEach((el) => {
-              // Only remove from dynamic ones
-            });
-          document
-            .querySelectorAll('#pagesWrap tbody tr')
-            .forEach((tr) => tr.classList.remove('no-print'));
-          document
-            .querySelectorAll('.sig-row')
-            .forEach((sr) => sr.classList.remove('no-print'));
-          document
-            .querySelectorAll('.xn-row')
-            .forEach((xr) => xr.classList.remove('no-print'));
-          document.querySelectorAll('.fw').forEach((w) => {
-            w.classList.remove('no-pdf', 'empty-opt');
-          });
-          document.querySelectorAll('[data-xn]').forEach((el) => {
-            el.classList.toggle(
-              'empty-xn',
-              !document.getElementById('tXnotes').checked,
-            );
-          });
-        }, 800);
-      }
-
-      // ============ CLEAR ============
-      function clearAll() {
-        if (!confirm('همه داده‌ها پاک شود؟')) return;
-        document.getElementById('pagesWrap').innerHTML = '';
-        pageCount = 0;
-        addPage();
-        calcAll();
-        toast('پاک شد');
-      }
-
-      // ============ TOAST ============
-      function toast(m) {
-        const c = document.getElementById('TW');
-        const d = document.createElement('div');
-        d.className = 'tst';
-        d.textContent = '✅ ' + m;
-        c.appendChild(d);
-        setTimeout(function () {
-          if (d.parentNode) d.remove();
-        }, 3000);
-      }
-
-      // ============ INIT ============
-      addPage(); // Start with 1 page (8 rows)
-    </script>
   </body>
+</html>
+<script>
+/* ===== SHAMSI ===== */
+var DN=['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
+var WD=['شنبه','یکشنبه','دوشنبه','سه‌شنبه'];
+var MN=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+var SAVE_KEY='karamoozi_form_v7';
+
+function todayJ(){
+  var d=new Date();
+  var j=jalaali.toJalaali(d.getFullYear(),d.getMonth()+1,d.getDate());
+  return{jy:j.jy,jm:j.jm,jd:j.jd,
+    str:j.jy+'/'+String(j.jm).padStart(2,'0')+'/'+String(j.jd).padStart(2,'0')};
+}
+function dayName(s){
+  if(!s||s.length<10)return'';
+  try{var p=s.split('/');var g=jalaali.toGregorian(+p[0],+p[1],+p[2]);
+    return DN[new Date(g.gy,g.gm-1,g.gd).getDay()];}catch(e){return'';}
+}
+function jMonthLen(jy,jm){
+  if(jm<=6)return 31;if(jm<=11)return 30;
+  return jalaali.isLeapJalaaliYear(jy)?30:29;
+}
+function jDayOfWeek(jy,jm,jd){
+  try{var g=jalaali.toGregorian(jy,jm,jd);
+    return new Date(g.gy,g.gm-1,g.gd).getDay();}catch(e){return 0;}
+}
+
+/* ===== TIME ===== */
+function t2m(t){if(!t)return 0;var p=t.split(':');return(+p[0]||0)*60+(+p[1]||0);}
+function m2t(m){m=Math.max(0,m);return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+
+/* ===== STATE ===== */
+var pageCount=0;
+var curSigEl=null;
+var sCtx=null;
+var drawing=false;
+var activeCal=null;
+var calYear=0;
+var calMonth=0;
+var autoSaveTimer=null;
+
+/* ===== AUTO RESIZE TEXTAREA ===== */
+document.addEventListener('input',function(e){
+  if(e.target.classList.contains('ta-mini')){
+    e.target.style.height='auto';
+    e.target.style.height=Math.min(e.target.scrollHeight,36)+'px';
+  }
+  scheduleAutoSave();
+});
+
+/* ===== TIME INPUT HANDLER ===== */
+function onTimeKey(inp,e){
+  var v=inp.value.replace(/[^0-9]/g,'');
+  if(v.length>2)v=v.substring(0,2);
+  inp.value=v;
+  var max=parseInt(inp.dataset.max)||23;
+  if(parseInt(v)>max)inp.value=String(max);
+  if(v.length===2&&!e.inputType?.includes('delete')){
+    var next=inp.nextElementSibling;
+    while(next&&next.tagName!=='INPUT')next=next.nextElementSibling;
+    if(next)next.focus();
+  }
+  calcFromRow(inp.closest('tr'));
+}
+
+function getTimeVal(tr,cls){
+  var h=tr.querySelector('.'+cls+'-h');
+  var m=tr.querySelector('.'+cls+'-m');
+  if(!h||!m)return'';
+  var hv=h.value.padStart(2,'0');
+  var mv=m.value.padStart(2,'0');
+  if(!h.value&&!m.value)return'';
+  return hv+':'+mv;
+}
+
+function setTimeVal(tr,cls,val){
+  if(!val)return;
+  var parts=val.split(':');
+  var h=tr.querySelector('.'+cls+'-h');
+  var m=tr.querySelector('.'+cls+'-m');
+  if(h)h.value=parts[0]||'';
+  if(m)m.value=parts[1]||'';
+}
+
+function calcFromRow(tr){
+  if(!tr)return;
+  var s=getTimeVal(tr,'ts');
+  var e=getTimeVal(tr,'te');
+  var d=tr.querySelector('[data-dur]');
+  if(s&&e){var diff=t2m(e)-t2m(s);d.textContent=diff>0?m2t(diff):'00:00';}
+  else{d.textContent='';}
+  calcAll();
+}
+
+/* ===== BUILD PAGE ===== */
+function addPage(){
+  pageCount++;
+  var pg=pageCount;
+  var showXN=document.getElementById('tXnotes').checked;
+
+  var div=document.createElement('div');
+  div.className='page';
+  div.dataset.page=pg;
+
+  var h='<div class="tw"><table><thead><tr>';
+  h+='<th class="col-n">#</th>';
+  h+='<th class="col-date">تاریخ</th>';
+  h+='<th class="col-day">روز</th>';
+  h+='<th class="col-time">شروع</th>';
+  h+='<th class="col-time">پایان</th>';
+  h+='<th class="col-dur">مدت</th>';
+  h+='<th class="col-loc">محل</th>';
+  h+='<th class="col-desc">شرح کار</th>';
+  h+='</tr></thead><tbody>';
+
+  for(var i=0;i<8;i++){
+    var rn=(pg-1)*8+i+1;
+    h+='<tr data-rn="'+rn+'">';
+    h+='<td><span class="rn">'+rn+'</span></td>';
+    h+='<td class="date-cell">';
+    h+='<input class="fi fd" placeholder="تاریخ" maxlength="10" oninput="onDI(this)" onfocus="showCal(this)">';
+    h+='<button class="dc-today no-print" onclick="setTd(this)" type="button">امروز</button>';
+    h+='</td>';
+    h+='<td class="day-td"></td>';
+    /* Time START - simple text inputs */
+    h+='<td><div class="time-wrap">';
+    h+='<input type="text" class="ts-h" data-max="23" maxlength="2" placeholder="00" oninput="onTimeKey(this,event)">';
+    h+='<span>:</span>';
+    h+='<input type="text" class="ts-m" data-max="59" maxlength="2" placeholder="00" oninput="onTimeKey(this,event)">';
+    h+='</div></td>';
+    /* Time END */
+    h+='<td><div class="time-wrap">';
+    h+='<input type="text" class="te-h" data-max="23" maxlength="2" placeholder="00" oninput="onTimeKey(this,event)">';
+    h+='<span>:</span>';
+    h+='<input type="text" class="te-m" data-max="59" maxlength="2" placeholder="00" oninput="onTimeKey(this,event)">';
+    h+='</div></td>';
+    h+='<td><span class="dur" data-dur></span></td>';
+    h+='<td><textarea class="fi ta-mini floc" placeholder="محل" rows="2"></textarea></td>';
+    h+='<td><textarea class="fi ta-mini desc-fi" placeholder="شرح" rows="2"></textarea></td>';
+    h+='</tr>';
+  }
+  h+='</tbody></table></div>';
+
+  /* Signatures */
+  h+='<div class="sigs"><div class="sigs-t">امضاها</div>';
+  for(var i=0;i<8;i++){
+    var rn=(pg-1)*8+i+1;
+    h+='<div class="sig-row" data-srn="'+rn+'">';
+    h+='<span class="sig-rn">'+rn+'</span>';
+    h+='<div class="sig-name"><input class="fi" placeholder="امضاکننده ۱"></div>';
+    h+='<div class="sig-box" data-sig="" onclick="openSig(this)"><span class="sph">امضا</span></div>';
+    h+='<div class="sig-name"><input class="fi" placeholder="امضاکننده ۲"></div>';
+    h+='<div class="sig-box" data-sig="" onclick="openSig(this)"><span class="sph">امضا</span></div>';
+    h+='</div>';
+  }
+  h+='</div>';
+
+  /* Extra notes */
+  h+='<div class="xnotes'+(showXN?'':' hide-xn')+'" data-xn>';
+  h+='<div class="xnotes-t">توضیحات بیشتر</div>';
+  for(var i=0;i<8;i++){
+    var rn=(pg-1)*8+i+1;
+    h+='<div class="xn-row" data-xrn="'+rn+'">';
+    h+='<span class="xn-rn">'+rn+':</span>';
+    h+='<textarea class="fi" placeholder="توضیحات" rows="1"></textarea>';
+    h+='</div>';
+  }
+  h+='</div>';
+
+  /* Page summary */
+  h+='<div class="sum page-sum">';
+  h+='<div class="sum-i"><span class="sl">روز</span><br><span class="sv ps-d">0</span></div>';
+  h+='<div class="sum-i"><span class="sl">ساعت</span><br><span class="sv ps-h">00:00</span></div>';
+  h+='</div>';
+
+  div.innerHTML=h;
+  document.getElementById('pagesWrap').appendChild(div);
+  calcAll();
+  scheduleAutoSave();
+}
+
+/* ===== DATE ===== */
+function onDI(inp){
+  var v=inp.value;
+  v=v.replace(/[۰-۹]/g,function(d){return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d));});
+  v=v.replace(/[^\d\/]/g,'');
+  if(v.length===4&&v.indexOf('/')===-1)v+='/';
+  else if(v.length===7&&v.split('/').length===2)v+='/';
+  if(v.length>10)v=v.substring(0,10);
+  inp.value=v;
+  if(v.length===10){updateDay(inp);calcAll();}
+  hideCal();
+}
+
+function setTd(btn){
+  var inp=btn.closest('.date-cell').querySelector('.fd');
+  inp.value=todayJ().str;
+  updateDay(inp);hideCal();calcAll();scheduleAutoSave();
+}
+
+function updateDay(inp){
+  var tr=inp.closest('tr');
+  var td=tr.querySelector('.day-td');
+  var dn=dayName(inp.value);
+  if(!dn){td.innerHTML='';return;}
+  var iw=WD.indexOf(dn)!==-1;
+  if(dn==='جمعه')td.innerHTML='<span class="day-text day-f">'+dn+'</span>';
+  else if(!iw)td.innerHTML='<span class="day-text day-e">'+dn+'</span>';
+  else td.innerHTML='<span class="day-text day-n">'+dn+'</span>';
+}
+
+/* ===== CALENDAR ===== */
+function showCal(inp){
+  hideCal();
+  var cell=inp.closest('.date-cell');
+  var wrap=cell.querySelector('.cal-wrap');
+  if(!wrap){wrap=document.createElement('div');wrap.className='cal-wrap';cell.appendChild(wrap);}
+  var v=inp.value;
+  if(v&&v.length===10){var p=v.split('/');calYear=+p[0];calMonth=+p[1];}
+  else{var t=todayJ();calYear=t.jy;calMonth=t.jm;}
+  activeCal={wrap:wrap,inp:inp};
+  renderCal();wrap.classList.add('show');
+  setTimeout(function(){document.addEventListener('click',calOut);},100);
+}
+function hideCal(){
+  if(activeCal){activeCal.wrap.classList.remove('show');activeCal=null;}
+  document.removeEventListener('click',calOut);
+}
+function calOut(e){
+  if(!activeCal)return;
+  if(!activeCal.wrap.contains(e.target)&&e.target!==activeCal.inp)hideCal();
+}
+function renderCal(){
+  if(!activeCal)return;
+  var w=activeCal.wrap;var t=todayJ();var sel=activeCal.inp.value;
+  var mLen=jMonthLen(calYear,calMonth);
+  var firstDow=jDayOfWeek(calYear,calMonth,1);
+  var shamsiDow=(firstDow+1)%7;
+  var h='<div class="cal-nav">';
+  h+='<button type="button" onclick="calPrev()">◀</button>';
+  h+='<span>'+MN[calMonth-1]+' '+calYear+'</span>';
+  h+='<button type="button" onclick="calNext()">▶</button></div>';
+  h+='<div class="cal-grid">';
+  h+='<span class="ch">ش</span><span class="ch">ی</span><span class="ch">د</span>';
+  h+='<span class="ch">س</span><span class="ch">چ</span><span class="ch">پ</span><span class="ch">ج</span>';
+  for(var i=0;i<shamsiDow;i++)h+='<span></span>';
+  for(var d=1;d<=mLen;d++){
+    var ds=calYear+'/'+String(calMonth).padStart(2,'0')+'/'+String(d).padStart(2,'0');
+    var cls='cd-btn';
+    if(calYear===t.jy&&calMonth===t.jm&&d===t.jd)cls+=' today';
+    if(ds===sel)cls+=' selected';
+    h+='<button type="button" class="'+cls+'" onclick="pickDate(\''+ds+'\')">'+d+'</button>';
+  }
+  h+='</div>';w.innerHTML=h;
+}
+function calPrev(){calMonth--;if(calMonth<1){calMonth=12;calYear--;}renderCal();}
+function calNext(){calMonth++;if(calMonth>12){calMonth=1;calYear++;}renderCal();}
+function pickDate(ds){
+  if(!activeCal)return;
+  activeCal.inp.value=ds;updateDay(activeCal.inp);hideCal();calcAll();scheduleAutoSave();
+}
+
+/* ===== CALC ===== */
+function calcAll(){
+  var gDays=0,gMins=0;
+  var pages=document.querySelectorAll('.page');
+  for(var pi=0;pi<pages.length;pi++){
+    var pg=pages[pi];var pDays=0,pMins=0;
+    var rows=pg.querySelectorAll('tbody tr');
+    for(var ri=0;ri<rows.length;ri++){
+      var tr=rows[ri];
+      var s=getTimeVal(tr,'ts');var e=getTimeVal(tr,'te');
+      if(s&&e){var diff=t2m(e)-t2m(s);if(diff>0){pDays++;pMins+=diff;}}
+    }
+    var psd=pg.querySelector('.ps-d');var psh=pg.querySelector('.ps-h');
+    if(psd)psd.textContent=pDays;if(psh)psh.textContent=m2t(pMins);
+    gDays+=pDays;gMins+=pMins;
+  }
+  document.getElementById('gD').textContent=gDays;
+  document.getElementById('gH').textContent=m2t(gMins);
+  document.getElementById('gA').textContent=gDays?m2t(Math.round(gMins/gDays)):'00:00';
+}
+
+/* ===== TOGGLE EXTRA NOTES ===== */
+function togXN(){
+  var show=document.getElementById('tXnotes').checked;
+  var els=document.querySelectorAll('[data-xn]');
+  for(var i=0;i<els.length;i++){
+    if(show)els[i].classList.remove('hide-xn');else els[i].classList.add('hide-xn');
+  }
+  scheduleAutoSave();
+}
+
+/* ===== SIGNATURE ===== */
+function openSig(box){
+  if(box.dataset.sig){
+    if(confirm('امضا حذف شود؟')){box.dataset.sig='';box.innerHTML='<span class="sph">امضا</span>';scheduleAutoSave();}
+    return;
+  }
+  curSigEl=box;
+  var choice=confirm('OK = امضای دستی\nCancel = آپلود عکس');
+  if(choice)openDraw();else document.getElementById('sfIn').click();
+}
+function openDraw(){
+  document.getElementById('sigMo').classList.add('sh');
+  var cv=document.getElementById('sCV');var cw=document.getElementById('sCW');
+  requestAnimationFrame(function(){
+    var r=cw.getBoundingClientRect();cv.width=r.width;cv.height=r.height;
+    sCtx=cv.getContext('2d');sCtx.fillStyle='#fff';sCtx.fillRect(0,0,cv.width,cv.height);
+    sCtx.strokeStyle='#1c1730';sCtx.lineWidth=2.5;sCtx.lineCap='round';sCtx.lineJoin='round';
+    drawing=false;
+    cv.onpointerdown=function(e){drawing=true;var p=gp(e,cv);sCtx.beginPath();sCtx.moveTo(p.x,p.y);e.preventDefault();};
+    cv.onpointermove=function(e){if(!drawing)return;var p=gp(e,cv);sCtx.lineTo(p.x,p.y);sCtx.stroke();e.preventDefault();};
+    cv.onpointerup=function(){drawing=false;};cv.onpointercancel=function(){drawing=false;};
+    cv.ontouchstart=function(e){if(e.touches.length!==1)return;e.preventDefault();drawing=true;var p=gp(e.touches[0],cv);sCtx.beginPath();sCtx.moveTo(p.x,p.y);};
+    cv.ontouchmove=function(e){if(!drawing||e.touches.length!==1)return;e.preventDefault();var p=gp(e.touches[0],cv);sCtx.lineTo(p.x,p.y);sCtx.stroke();};
+    cv.ontouchend=function(){drawing=false;};
+  });
+}
+function gp(e,cv){var r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*(cv.width/r.width),y:(e.clientY-r.top)*(cv.height/r.height)};}
+function clrC(){var cv=document.getElementById('sCV');if(sCtx){sCtx.fillStyle='#fff';sCtx.fillRect(0,0,cv.width,cv.height);}}
+function saveSig(){
+  var cv=document.getElementById('sCV');var du=cv.toDataURL('image/png');
+  if(curSigEl){curSigEl.dataset.sig=du;curSigEl.innerHTML='<img src="'+du+'">';}
+  clsMo();toast('امضا ثبت شد');scheduleAutoSave();
+}
+function onSF(e){
+  var f=e.target.files[0];if(!f)return;
+  if(f.size>5*1024*1024){toast('حجم زیاد!');e.target.value='';return;}
+  var r=new FileReader();r.onload=function(ev){
+    if(curSigEl){curSigEl.dataset.sig=ev.target.result;curSigEl.innerHTML='<img src="'+ev.target.result+'">';}
+    toast('آپلود شد');scheduleAutoSave();
+  };r.readAsDataURL(f);e.target.value='';
+}
+function clsMo(){document.getElementById('sigMo').classList.remove('sh');}
+document.getElementById('sigMo').addEventListener('click',function(e){if(e.target.id==='sigMo')clsMo();});
+
+/* ===== LOCAL STORAGE ===== */
+function collectData(){
+  var info={};
+  var infoFields=['i_name','i_sid','i_major','i_uni','i_comp','i_sup','i_adv','i_period'];
+  for(var i=0;i<infoFields.length;i++){
+    var el=document.getElementById(infoFields[i]);
+    info[infoFields[i]]=el?el.value:'';
+  }
+  /* Print toggles */
+  var toggles={};
+  var fws=document.querySelectorAll('.fw[data-k]');
+  for(var i=0;i<fws.length;i++){
+    var cb=fws[i].querySelector('.pt');
+    toggles[fws[i].dataset.k]=cb?cb.checked:true;
+  }
+  var settings={
+    xnotes:document.getElementById('tXnotes').checked,
+    empty:document.getElementById('tEmpty').checked,
+    toggles:toggles
+  };
+  /* Pages data */
+  var pagesData=[];
+  var pages=document.querySelectorAll('.page');
+  for(var pi=0;pi<pages.length;pi++){
+    var pg=pages[pi];
+    var rowsData=[];
+    var rows=pg.querySelectorAll('tbody tr');
+    for(var ri=0;ri<rows.length;ri++){
+      var tr=rows[ri];
+      rowsData.push({
+        date:tr.querySelector('.fd')?tr.querySelector('.fd').value:'',
+        tsH:tr.querySelector('.ts-h')?tr.querySelector('.ts-h').value:'',
+        tsM:tr.querySelector('.ts-m')?tr.querySelector('.ts-m').value:'',
+        teH:tr.querySelector('.te-h')?tr.querySelector('.te-h').value:'',
+        teM:tr.querySelector('.te-m')?tr.querySelector('.te-m').value:'',
+        loc:tr.querySelector('.floc')?tr.querySelector('.floc').value:'',
+        desc:tr.querySelector('.desc-fi')?tr.querySelector('.desc-fi').value:''
+      });
+    }
+    /* Sig data */
+    var sigsData=[];
+    var sigRows=pg.querySelectorAll('.sig-row');
+    for(var si=0;si<sigRows.length;si++){
+      var sr=sigRows[si];
+      var inputs=sr.querySelectorAll('.sig-name input');
+      var boxes=sr.querySelectorAll('.sig-box');
+      sigsData.push({
+        name1:inputs[0]?inputs[0].value:'',
+        sig1:boxes[0]?boxes[0].dataset.sig:'',
+        name2:inputs[1]?inputs[1].value:'',
+        sig2:boxes[1]?boxes[1].dataset.sig:''
+      });
+    }
+    /* Extra notes */
+    var xnData=[];
+    var xnRows=pg.querySelectorAll('.xn-row textarea');
+    for(var xi=0;xi<xnRows.length;xi++){
+      xnData.push(xnRows[xi].value);
+    }
+    pagesData.push({rows:rowsData,sigs:sigsData,xn:xnData});
+  }
+  return{info:info,settings:settings,pages:pagesData,savedAt:new Date().toISOString()};
+}
+
+function saveToStorage(){
+  try{
+    var data=collectData();
+    localStorage.setItem(SAVE_KEY,JSON.stringify(data));
+    document.getElementById('saveStatus').textContent='✅ ذخیره: '+
+      new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+    return true;
+  }catch(e){
+    console.error('Save error:',e);
+    document.getElementById('saveStatus').textContent='❌ خطا در ذخیره';
+    return false;
+  }
+}
+
+function loadFromStorage(){
+  try{
+    var raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)return false;
+    var data=JSON.parse(raw);
+    /* Info */
+    if(data.info){
+      var keys=Object.keys(data.info);
+      for(var i=0;i<keys.length;i++){
+        var el=document.getElementById(keys[i]);
+        if(el)el.value=data.info[keys[i]]||'';
+      }
+    }
+    /* Settings */
+    if(data.settings){
+      document.getElementById('tXnotes').checked=!!data.settings.xnotes;
+      document.getElementById('tEmpty').checked=data.settings.empty!==false;
+      if(data.settings.toggles){
+        var fws=document.querySelectorAll('.fw[data-k]');
+        for(var i=0;i<fws.length;i++){
+          var k=fws[i].dataset.k;
+          var cb=fws[i].querySelector('.pt');
+          if(cb&&data.settings.toggles[k]!==undefined)cb.checked=data.settings.toggles[k];
+        }
+      }
+    }
+    /* Pages */
+    document.getElementById('pagesWrap').innerHTML='';
+    pageCount=0;
+    if(data.pages&&data.pages.length>0){
+      for(var pi=0;pi<data.pages.length;pi++){
+        addPage();
+        var pg=document.querySelectorAll('.page')[pi];
+        var pd=data.pages[pi];
+        /* Rows */
+        if(pd.rows){
+          var rows=pg.querySelectorAll('tbody tr');
+          for(var ri=0;ri<rows.length&&ri<pd.rows.length;ri++){
+            var tr=rows[ri];var rd=pd.rows[ri];
+            if(rd.date){tr.querySelector('.fd').value=rd.date;updateDay(tr.querySelector('.fd'));}
+            if(rd.tsH)tr.querySelector('.ts-h').value=rd.tsH;
+            if(rd.tsM)tr.querySelector('.ts-m').value=rd.tsM;
+            if(rd.teH)tr.querySelector('.te-h').value=rd.teH;
+            if(rd.teM)tr.querySelector('.te-m').value=rd.teM;
+            if(rd.loc)tr.querySelector('.floc').value=rd.loc;
+            if(rd.desc)tr.querySelector('.desc-fi').value=rd.desc;
+            calcFromRow(tr);
+          }
+        }
+        /* Sigs */
+        if(pd.sigs){
+          var sigRows=pg.querySelectorAll('.sig-row');
+          for(var si=0;si<sigRows.length&&si<pd.sigs.length;si++){
+            var sr=sigRows[si];var sd=pd.sigs[si];
+            var inputs=sr.querySelectorAll('.sig-name input');
+            var boxes=sr.querySelectorAll('.sig-box');
+            if(inputs[0]&&sd.name1)inputs[0].value=sd.name1;
+            if(boxes[0]&&sd.sig1){boxes[0].dataset.sig=sd.sig1;boxes[0].innerHTML='<img src="'+sd.sig1+'">';}
+            if(inputs[1]&&sd.name2)inputs[1].value=sd.name2;
+            if(boxes[1]&&sd.sig2){boxes[1].dataset.sig=sd.sig2;boxes[1].innerHTML='<img src="'+sd.sig2+'">';}
+          }
+        }
+        /* XN */
+        if(pd.xn){
+          var xnTAs=pg.querySelectorAll('.xn-row textarea');
+          for(var xi=0;xi<xnTAs.length&&xi<pd.xn.length;xi++){
+            xnTAs[xi].value=pd.xn[xi]||'';
+          }
+        }
+      }
+    }
+    togXN();calcAll();
+    if(data.savedAt){
+      document.getElementById('saveStatus').textContent='بارگذاری از ذخیره: '+
+        new Date(data.savedAt).toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+    }
+    return true;
+  }catch(e){console.error('Load error:',e);return false;}
+}
+
+/* Auto save */
+function scheduleAutoSave(){
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer=setTimeout(function(){saveToStorage();},2000);
+}
+
+function saveNow(){
+  if(saveToStorage())toast('ذخیره شد');
+}
+
+/* Save on page leave */
+window.addEventListener('beforeunload',function(){
+  try{saveToStorage();}catch(e){}
+});
+
+/* ===== PRINT ===== */
+function doPrint(){
+  var showEmpty=document.getElementById('tEmpty').checked;
+  var showXN=document.getElementById('tXnotes').checked;
+
+  if(!showEmpty){
+    var allTr=document.querySelectorAll('#pagesWrap tbody tr');
+    for(var i=0;i<allTr.length;i++){
+      var tr=allTr[i];
+      var dt=tr.querySelector('.fd');
+      var sh=tr.querySelector('.ts-h');
+      var empty=(!dt||!dt.value)&&(!sh||!sh.value);
+      if(empty){
+        tr.classList.add('no-print');
+        var rn=tr.dataset.rn;
+        var sr=document.querySelector('.sig-row[data-srn="'+rn+'"]');
+        if(sr)sr.classList.add('no-print');
+        var xr=document.querySelector('.xn-row[data-xrn="'+rn+'"]');
+        if(xr)xr.classList.add('no-print');
+      }
+    }
+  }
+
+  var fws=document.querySelectorAll('.fw[data-k]');
+  for(var i=0;i<fws.length;i++){
+    var w=fws[i];
+    var cb=w.querySelector('.pt');
+    if(cb&&!cb.checked)w.classList.add('no-pdf');
+    var inp=w.querySelector('.fi');
+    if(inp&&!inp.value.trim())w.classList.add('empty-opt');
+  }
+
+  if(!showXN){
+    var xns=document.querySelectorAll('[data-xn]');
+    for(var i=0;i<xns.length;i++)xns[i].classList.add('hide-xn');
+  }
+
+  window.print();
+
+  setTimeout(function(){
+    var trs=document.querySelectorAll('#pagesWrap tbody tr');
+    for(var i=0;i<trs.length;i++)trs[i].classList.remove('no-print');
+    var srs=document.querySelectorAll('.sig-row');
+    for(var i=0;i<srs.length;i++)srs[i].classList.remove('no-print');
+    var xrs=document.querySelectorAll('.xn-row');
+    for(var i=0;i<xrs.length;i++)xrs[i].classList.remove('no-print');
+    var fws2=document.querySelectorAll('.fw');
+    for(var i=0;i<fws2.length;i++){fws2[i].classList.remove('no-pdf');fws2[i].classList.remove('empty-opt');}
+    var xns2=document.querySelectorAll('[data-xn]');
+    for(var i=0;i<xns2.length;i++){
+      if(document.getElementById('tXnotes').checked)xns2[i].classList.remove('hide-xn');
+      else xns2[i].classList.add('hide-xn');
+    }
+  },800);
+}
+
+/* ===== CLEAR ===== */
+function clearAll(){
+  if(!confirm('همه پاک شود؟ (داده‌های ذخیره‌شده هم پاک می‌شود)'))return;
+  localStorage.removeItem(SAVE_KEY);
+  document.getElementById('pagesWrap').innerHTML='';
+  pageCount=0;addPage();calcAll();
+  document.getElementById('saveStatus').textContent='ذخیره نشده';
+  toast('پاک شد');
+}
+
+/* ===== TOAST ===== */
+function toast(m){
+  var c=document.getElementById('TW');
+  var d=document.createElement('div');d.className='tst';d.textContent='✅ '+m;
+  c.appendChild(d);setTimeout(function(){if(d.parentNode)d.remove();},3000);
+}
+
+/* ===== INIT ===== */
+var loaded=loadFromStorage();
+if(!loaded){addPage();}
+</script>
+</body>
 </html>
