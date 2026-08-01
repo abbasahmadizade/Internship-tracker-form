@@ -417,6 +417,62 @@ canvas.sig, canvas.fs-sig{touch-action:pan-y;}
 .sig-foot span{font-size:.65rem; color:#9dabbd;}
 .sig-box, .sec, .field, textarea{scroll-margin-top:130px;}
 
+/* --- امضای روزانه سرپرست (حالت daily) --- */
+.sig-sup{
+  border-top:1px dashed var(--rule); background:#fbfcfe;
+  display:none; flex-direction:column;
+}
+body.sup-daily .sig-sup{display:flex;}
+.sig-sup-lbl{
+  font-size:.66rem; font-weight:700; color:var(--ink-3);
+  padding:3px 8px 0; text-align:center;
+}
+.sig-sup .sup-canvas-wrap{position:relative;}
+canvas.sup-sig-day{display:block; width:100%; height:58px; touch-action:pan-y;}
+.sig-box.sup-armed canvas.sup-sig-day{touch-action:none; cursor:crosshair;}
+.sig-box.sup-armed .sup-canvas-wrap{box-shadow:inset 0 0 0 2px var(--seal-2);}
+.sig-sup .sig-hint{font-size:.66rem;}
+.sig-sup-foot{display:flex; gap:4px; padding:3px 5px; justify-content:center;}
+.sig-sup-foot .sig-arm{font-size:.63rem; height:25px; padding:0 6px;}
+.sig-sup-foot .mini-btn{font-size:.63rem; height:25px; min-width:0; padding:0 6px;}
+
+/* --- کادر جامع تأیید سرپرست (حالت overall) --- */
+.sup-overall{
+  display:none; margin-top:9px; border:1px solid var(--rule);
+  border-radius:5px; overflow:hidden; background:#fff;
+}
+body.sup-overall-on .sup-overall{display:block;}
+.so-head{background:var(--band); border-bottom:1px solid var(--rule-2);}
+input.so-title{
+  display:block; width:100%; border:0; border-radius:0; background:transparent;
+  font-family:inherit; padding:7px 11px; font-size:.79rem; font-weight:700;
+  color:var(--seal); text-align:center;
+}
+input.so-title:hover{background:#e6edf7;}
+input.so-title:focus{outline:none; background:#fff; box-shadow:inset 0 0 0 2px var(--seal-2);}
+.so-title-pm{text-align:center;}
+.so-body{display:grid; grid-template-columns:1fr 250px; gap:0;}
+.so-note-wrap{padding:8px 11px; border-inline-end:1px solid var(--rule-2); min-width:0;}
+.so-lbl{font-size:.71rem; font-weight:700; color:var(--ink-3); display:block; margin-bottom:4px;}
+#supOverallNote{
+  border:1px solid var(--rule-2); border-radius:4px; resize:none; overflow:hidden;
+  font-size:.82rem; line-height:1.8; padding:7px 9px; min-height:52px; display:block;
+}
+.so-note-pm{font-size:8.4pt; line-height:1.6; color:#000;}
+.so-sig{display:flex; flex-direction:column; min-width:0;}
+.so-canvas-wrap{position:relative; flex:1;}
+canvas.sup-sig{display:block; width:100%; height:76px; touch-action:pan-y;}
+.sup-armed canvas.sup-sig{touch-action:none; cursor:crosshair;}
+.sup-armed .so-canvas-wrap{box-shadow:inset 0 0 0 2px var(--seal-2);}
+.so-meta{border-top:1px dashed var(--rule-2); padding:4px 8px; display:flex; flex-wrap:wrap; gap:5px; align-items:center;}
+.so-f{display:flex; align-items:center; gap:4px; min-width:0; flex:1 1 auto;}
+.so-f label{font-size:.68rem; font-weight:700; color:var(--ink-3); white-space:nowrap;}
+.so-f input{border:0; background:transparent; padding:3px 2px; font-size:.79rem; font-weight:700; min-width:0;}
+.so-f input:focus{box-shadow:none;}
+.so-ops{display:flex; gap:4px; flex:0 0 auto;}
+.so-ops .sig-arm{font-size:.65rem; height:26px; padding:0 7px;}
+.so-ops .mini-btn{font-size:.65rem; height:26px; min-width:0; padding:0 7px;}
+
 /* ==================================================================
    ۸) صفحه دوم — گزارش روزانه
    ================================================================== */
@@ -558,6 +614,17 @@ body.show-tips .tips-sheet{display:block;}
   .doc-title{font-size:1.05rem;}
 }
 @media (max-width:560px){
+  .so-body{grid-template-columns:1fr;}
+  .so-note-wrap{border-inline-end:0; border-bottom:1px solid var(--rule-2);}
+  canvas.sup-sig{height:110px;}
+  canvas.sup-sig-day{height:80px;}
+  .so-meta{padding:7px 9px; gap:8px;}
+  .so-f{flex:1 1 100%;}
+  .so-f input{font-size:16px; padding:8px 4px; border:1px solid var(--rule-2); border-radius:4px; flex:1;}
+  .so-ops{flex:1 1 100%;}
+  .so-ops .sig-arm{flex:1; justify-content:center; height:38px; font-size:.75rem;}
+  .so-ops .mini-btn{height:38px; padding:0 12px; font-size:.75rem;}
+  .sig-sup-foot .sig-arm, .sig-sup-foot .mini-btn{height:34px; font-size:.72rem;}
   .fs-date{flex-direction:column; align-items:stretch; gap:7px;}
   .fs-date input{width:100%; flex:1 1 auto;}
   .fs-clear{margin-inline-start:0; justify-content:stretch;}
@@ -726,6 +793,37 @@ body.show-tips .tips-sheet{display:block;}
   .sig-box.armed canvas.sig, .fs-box.armed canvas.fs-sig{background:#fff !important;}
   .sig-foot,.sig-hint{display:none !important;}
 
+  /* امضای روزانه سرپرست */
+  body.sup-daily .sig-sup{display:flex !important;}
+  .sig-sup{border-top:0.5pt dashed #666; background:#fff;}
+  .sig-sup-lbl{font-size:6.4pt; color:#333; padding:1.5pt 3pt 0;}
+  canvas.sup-sig-day{height:13mm !important;}
+  .sig-sup-foot{display:none !important;}
+  .sig-box.sup-armed .sup-canvas-wrap{box-shadow:none !important;}
+
+  /* کادر جامع سرپرست */
+  body.sup-overall-on .sup-overall{display:block !important; break-inside:avoid;}
+  .sup-overall{border:0.5pt solid #444; margin-top:4pt;}
+  .so-head{background:#f0f0f0 !important; border-bottom:0.5pt solid #666;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  input.so-title{display:none !important;}
+  .so-title-pm{
+    display:block; text-align:center; font-size:8.4pt; font-weight:700; color:#000;
+    padding:2.6pt 6pt;
+  }
+  .so-body{grid-template-columns:1fr 46mm !important;}
+  .so-note-wrap{padding:3pt 6pt; border-inline-end:0.5pt solid #999;}
+  .so-lbl{font-size:6.8pt; color:#333; margin-bottom:1.5pt;}
+  #supOverallNote{display:none !important;}
+  .so-note-pm{display:block; min-height:9mm; white-space:pre-wrap; overflow-wrap:anywhere;}
+  canvas.sup-sig{height:17mm !important;}
+  .sup-armed .so-canvas-wrap{box-shadow:none !important;}
+  .so-meta{border-top:0.4pt dashed #999; padding:2pt 5pt; gap:3pt;}
+  .so-f label{font-size:6.8pt; color:#333;}
+  .so-f input{display:none !important;}
+  .so-f .pm{display:block; font-size:8pt; font-weight:700; color:#000; min-height:9pt;}
+  .so-ops{display:none !important;}
+
   /* صفحه دوم — گزارش روزانه */
   .day-report{border:0.5pt solid #444; margin-bottom:5pt; break-inside:avoid;}
   .day-report-head{
@@ -803,6 +901,7 @@ body.show-tips .tips-sheet{display:block;}
       <button class="btn" id="btnImport" type="button">⬆️ بارگذاری JSON</button>
       <button class="btn" id="btnTips" type="button" aria-pressed="false">📋 برگه راهنما در چاپ: خاموش</button>
       <button class="btn ghost-danger" id="btnClear" type="button">🗑️ پاک کردن فرم</button>
+      <button class="btn ghost-danger" id="btnWipe" type="button" title="حذف کامل همه هفته‌ها از حافظه این مرورگر">🔒 پاک‌سازی کامل</button>
     </div>
     <input type="file" id="fileInput" accept="application/json,.json" hidden>
   </div>
@@ -854,6 +953,17 @@ body.show-tips .tips-sheet{display:block;}
     </div>
 
     <div class="g-sec">
+      <h4>🔒 حریم خصوصی</h4>
+      <ul>
+        <li>این فرم <b>هیچ اطلاعاتی را به اینترنت نمی‌فرستد</b>. کل برنامه یک فایل است و آفلاین کار می‌کند.</li>
+        <li>اطلاعات شما (شامل کد ملی و شماره تماس) فقط در <b>حافظه‌ی همین مرورگر روی همین دستگاه</b> ذخیره می‌شود.</li>
+        <li>اگر فایل را روی گیت‌هاب بگذارید، فقط <b>فرم خالی</b> منتشر می‌شود، نه اطلاعات شما.</li>
+        <li><b>هشدار:</b> فایل JSON خروجی حاوی اطلاعات هویتی شماست — آن را در جای عمومی آپلود نکنید.</li>
+        <li>روی کامپیوتر مشترک، بعد از کار دکمه‌ی <b>«🔒 پاک‌سازی کامل»</b> را بزنید تا هیچ ردی نماند.</li>
+      </ul>
+    </div>
+
+    <div class="g-sec">
       <h4>💾 ذخیره و انتقال به گوشی</h4>
       <ul>
         <li>ذخیره <b>خودکار</b> است و اطلاعات در همان مرورگر می‌ماند.</li>
@@ -879,6 +989,8 @@ body.show-tips .tips-sheet{display:block;}
         <li>کادرها به‌صورت پیش‌فرض <b>قفل</b> هستند و فقط نوشته‌ی «محل امضا» دارند — یعنی برای امضای دستی روی کاغذ آماده‌اند و هنگام اسکرول در گوشی ناخواسته خط نمی‌افتد.</li>
         <li>برای امضای دیجیتال، دکمه‌ی <b>«✍ امضای دیجیتال»</b> زیر همان کادر را بزنید تا فعال شود؛ بعد از امضا دوباره بزنید تا قفل شود.</li>
         <li>عنوان بلوک‌های امضای پایانی (مثلاً «امضای سرپرست») قابل ویرایش است — روی خودش کلیک کنید.</li>
+        <li><b>امضای سرپرست در صفحه اول:</b> از «تنظیمات فیلدها» یکی از سه حالت را انتخاب کنید —
+            بدون امضا، امضای روزانه زیر هر روز، یا یک کادر جامع تأیید کل هفته. این تنظیم برای هر هفته جداگانه است.</li>
       </ul>
     </div>
 
@@ -919,6 +1031,16 @@ body.show-tips .tips-sheet{display:block;}
     </div>
     <ul class="cf-list" id="cfList"></ul>
     <p class="empty-note" id="cfEmpty">هنوز فیلد دلخواهی اضافه نشده است.</p>
+  </div>
+
+  <div class="grp">
+    <label for="supMode">امضای سرپرست در صفحه اول (بخش تأیید برنامه)</label>
+    <select id="supMode">
+      <option value="none">بدون امضای سرپرست</option>
+      <option value="daily">امضای روزانه — زیر امضای هر روز کارآموز</option>
+      <option value="overall">یک کادر جامع — تأیید کل هفته</option>
+    </select>
+    <p class="desc" style="margin:7px 0 0">این تنظیم برای هر هفته جداگانه ذخیره می‌شود.</p>
   </div>
 
   <div class="grp">
@@ -990,8 +1112,49 @@ body.show-tips .tips-sheet{display:block;}
   </section>
 
   <section class="sec">
-    <h2 class="sec-title">امضای روزانه کارآموز <small class="scr-only">با ماوس یا لمس امضا کنید</small></h2>
+    <h2 class="sec-title" id="sigSecTitle">امضای روزانه کارآموز <small class="scr-only">با ماوس یا لمس امضا کنید</small></h2>
     <div class="sig-grid" id="sigGrid"></div>
+
+    <!-- کادر جامع تأیید سرپرست (حالت overall) -->
+    <div class="sup-overall" id="supOverall">
+      <div class="so-head">
+        <input class="so-title" id="supOverallTitle" maxlength="46"
+               value="تأیید سرپرست کارآموزی — برنامه و عملکرد هفته"
+               title="برای تغییر عنوان کلیک کنید">
+        <span class="pm so-title-pm" data-pm="supOverallTitle"></span>
+      </div>
+      <div class="so-body">
+        <div class="so-note-wrap">
+          <label class="so-lbl">نظر سرپرست:</label>
+          <textarea id="supOverallNote" maxlength="220" rows="2"
+            placeholder="برنامه اعلام‌شده و حضور کارآموز در بازه فوق مورد تأیید است…"></textarea>
+          <div class="pm so-note-pm" data-pm="supOverallNote"></div>
+        </div>
+        <div class="so-sig">
+          <div class="so-canvas-wrap">
+            <canvas class="sup-sig" data-supsig="overall"></canvas>
+            <div class="sig-hint" data-suphint="overall">محل امضا و مهر</div>
+          </div>
+          <div class="so-meta">
+            <span class="so-f">
+              <label>نام:</label>
+              <input type="text" id="supOverallName" maxlength="40" placeholder="">
+              <span class="pm" data-pm="supOverallName"></span>
+            </span>
+            <span class="so-f">
+              <label>تاریخ:</label>
+              <input type="text" id="supOverallDate" class="fs-datein" maxlength="10"
+                     inputmode="numeric" placeholder="____/__/__">
+              <span class="pm" data-pm="supOverallDate"></span>
+            </span>
+            <span class="so-ops no-print">
+              <button class="sig-arm" type="button" data-suparm="overall">✍ امضای دیجیتال</button>
+              <button class="mini-btn" type="button" data-supclear="overall">پاک کردن</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -1413,6 +1576,17 @@ function buildSigs(){
       <div class="sig-foot no-print">
         <button class="sig-arm" type="button" data-sigarm="${i}">✍ امضای دیجیتال</button>
         <button class="mini-btn" type="button" data-sigclear="${i}">پاک کردن</button>
+      </div>
+      <div class="sig-sup">
+        <span class="sig-sup-lbl">امضای سرپرست</span>
+        <div class="sup-canvas-wrap">
+          <canvas class="sup-sig-day" data-supday="${i}"></canvas>
+          <div class="sig-hint" data-supdayhint="${i}">محل امضا</div>
+        </div>
+        <div class="sig-sup-foot no-print">
+          <button class="sig-arm" type="button" data-supdayarm="${i}">✍ امضا</button>
+          <button class="mini-btn" type="button" data-supdayclear="${i}">پاک</button>
+        </div>
       </div>`;
     grid.appendChild(box);
   }
@@ -1457,10 +1631,17 @@ class SignaturePad{
   setArmed(on){
     this.armed = !!on;
     if (!this.box || !this.box.isConnected) return;
-    this.box.classList.toggle("armed", this.armed);
-    this.box.classList.toggle("locked", !this.armed);
-    const btn = this.box.querySelector(".sig-arm");
-    if (btn) btn.textContent = this.armed ? "✓ پایان امضا" : "✍ امضای دیجیتال";
+    const cls = this.armClass || "armed";
+    this.box.classList.toggle(cls, this.armed);
+    if (cls === "armed") this.box.classList.toggle("locked", !this.armed);
+    // دکمه‌ی متعلق به همین کادر (نه کادرهای تودرتو)
+    const scope = this.canvas.closest(".sig-sup, .so-sig, .sig-box, .fs-box");
+    const btn = scope ? scope.querySelector(".sig-arm") : null;
+    if (btn){
+      const short = btn.textContent.trim().length < 9;
+      btn.textContent = this.armed ? (short ? "✓ پایان" : "✓ پایان امضا")
+                                   : (short ? "✍ امضا" : "✍ امضای دیجیتال");
+    }
   }
   resize(){
     const prev = this.empty ? null : this.toData();
@@ -1540,6 +1721,9 @@ let dayPads = [];
 const finalPads = $$("canvas.fs-sig").map((c,i) =>
   new SignaturePad(c, $(`[data-fshint="${i}"]`), () => scheduleSave()));
 
+let supPads = [];        // امضای روزانه سرپرست
+let supOverallPad = null; // امضای جامع سرپرست
+
 /** ساخت مجدد امضاهای روزانه (پس از تغییر تعداد روزها) */
 function bindDaySignatures(){
   dayPads = $$("canvas.sig").map((c,i) =>
@@ -1551,7 +1735,45 @@ function bindDaySignatures(){
       const pad = dayPads[+b.dataset.sigarm];
       pad.setArmed(!pad.armed);
     }));
+
+  // امضای روزانه سرپرست (زیر هر کادر)
+  supPads = $$("canvas.sup-sig-day").map((c,i) => {
+    const pad = new SignaturePad(c, $(`[data-supdayhint="${i}"]`), () => scheduleSave(),
+                                 c.closest(".sig-box"));
+    pad.armClass = "sup-armed";     // کلاس جدا تا با امضای کارآموز قاطی نشود
+    return pad;
+  });
+  $$("[data-supdayclear]").forEach(b =>
+    b.addEventListener("click", () => supPads[+b.dataset.supdayclear].clear()));
+  $$("[data-supdayarm]").forEach(b =>
+    b.addEventListener("click", () => {
+      const pad = supPads[+b.dataset.supdayarm];
+      pad.setArmed(!pad.armed);
+    }));
 }
+
+/* امضای جامع سرپرست */
+supOverallPad = new SignaturePad(
+  $('canvas.sup-sig[data-supsig="overall"]'),
+  $('[data-suphint="overall"]'),
+  () => scheduleSave(),
+  $("#supOverall")
+);
+supOverallPad.armClass = "sup-armed";
+$('[data-suparm="overall"]').addEventListener("click",
+  () => supOverallPad.setArmed(!supOverallPad.armed));
+$('[data-supclear="overall"]').addEventListener("click", () => supOverallPad.clear());
+
+/* عنوان و متن کادر جامع */
+["supOverallTitle","supOverallName","supOverallNote"].forEach(id => {
+  const el = $("#" + id), m = $(`.pm[data-pm="${id}"]`);
+  const upd = () => {
+    if (m) m.textContent = el.value;
+    if (id === "supOverallNote"){ el.style.height="auto"; el.style.height=Math.max(52, el.scrollHeight)+"px"; }
+  };
+  el.addEventListener("input", () => { upd(); scheduleSave(); });
+  el._refresh = upd; upd();
+});
 
 $$("[data-fsclear]").forEach(b =>
   b.addEventListener("click", () => finalPads[+b.dataset.fsclear].clear()));
@@ -1572,6 +1794,8 @@ window.addEventListener("resize", () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
     dayPads.forEach(p => p.resize()); finalPads.forEach(p => p.resize());
+    supPads.forEach(p => p.resize());
+    if (supOverallPad) supOverallPad.resize();
   }, 220);
 });
 
@@ -1629,7 +1853,10 @@ function rowMinutes(i){
   const SH = +sh, SM = sm === "" ? 0 : +sm, EH = +eh, EM = em === "" ? 0 : +em;
   if ([SH,SM,EH,EM].some(Number.isNaN)) return null;
   if (SH > 23 || EH > 23 || SM > 59 || EM > 59) return NaN;
-  return (EH*60 + EM) - (SH*60 + SM);
+  let diff = (EH*60 + EM) - (SH*60 + SM);
+  // شیفت شب: اگر پایان کوچک‌تر از شروع باشد، یعنی کار تا بامداد روز بعد ادامه داشته
+  if (diff < 0) diff += 24 * 60;
+  return diff === 0 ? 0 : diff;
 }
 const fmtHM = m => `${Math.floor(m/60)}:${pad2(m%60)}`;
 
@@ -1653,7 +1880,11 @@ function recalc(){
       if (meta) meta.textContent = "";
       continue;
     }
-    el.textContent = toFaDigits(fmtHM(m));
+    const startMin = (+toEnDigits(getTime(i,"sh")) * 60) + (+(getTime(i,"sm") || 0));
+    const endMin = (+toEnDigits(getTime(i,"eh")) * 60) + (+(getTime(i,"em") || 0));
+    const overnight = endMin < startMin;
+    el.textContent = toFaDigits(fmtHM(m)) + (overnight ? "*" : "");
+    el.title = overnight ? "شیفت شب — پایان در بامداد روز بعد" : "";
     if (meta) meta.textContent =
       `${toEnDigits(getTime(i,"sh")).padStart(2,"0")}:${(getTime(i,"sm")||"00").padStart(2,"0")}` +
       ` تا ${toEnDigits(getTime(i,"eh")).padStart(2,"0")}:${(getTime(i,"em")||"00").padStart(2,"0")}` +
@@ -1840,7 +2071,7 @@ function setRowCount(n, silent){
   buildRows(); buildSigs(); buildDayReports();
   bindRowEvents(); bindDaySignatures(); bindLongTexts();
   apply(snapshot);                     // بازگرداندن آنچه جا می‌شود
-  setTimeout(() => dayPads.forEach(p => p.resize()), 50);
+  setTimeout(() => { dayPads.forEach(p => p.resize()); supPads.forEach(p => p.resize()); }, 50);
   updateRowCountUI();
   if (!silent){ commitActiveWeek(); saveWorkbook(); scheduleSave();
     toast(`تعداد روزهای هفته: ${toFaDigits(ROWS)}`, "ok"); }
@@ -1998,6 +2229,38 @@ $("#cfAdd").addEventListener("click", () => {
 });
 $("#cfName").addEventListener("keydown", e => { if (e.key === "Enter") $("#cfAdd").click(); });
 
+/* حالت امضای سرپرست: none | daily | overall */
+let supMode = "none";
+function applySupMode(mode, silent){
+  supMode = ["none","daily","overall"].includes(mode) ? mode : "none";
+  document.body.classList.toggle("sup-daily", supMode === "daily");
+  document.body.classList.toggle("sup-overall-on", supMode === "overall");
+  const sel = $("#supMode");
+  if (sel && sel.value !== supMode) sel.value = supMode;
+  // عنوان بخش امضاها با حالت هم‌گام شود
+  const ttl = $("#sigSecTitle");
+  if (ttl){
+    const txt = supMode === "none" ? "امضای روزانه کارآموز"
+              : supMode === "daily" ? "امضای روزانه کارآموز و سرپرست"
+              : "امضای روزانه کارآموز و تأیید سرپرست";
+    ttl.childNodes[0].nodeValue = txt + " ";
+  }
+  if (supMode !== "daily") supPads.forEach(p => p.setArmed(false));
+  if (supMode !== "overall" && supOverallPad) supOverallPad.setArmed(false);
+  // بوم‌ها وقتی مخفی‌اند ابعاد صفر دارند؛ بعد از نمایان‌شدن باید دوباره اندازه بگیرند
+  requestAnimationFrame(() => {
+    supPads.forEach(p => p.resize());
+    if (supOverallPad) supOverallPad.resize();
+  });
+  if (!silent) scheduleSave();
+}
+$("#supMode").addEventListener("change", e => {
+  applySupMode(e.target.value);
+  toast(e.target.value === "none" ? "امضای سرپرست حذف شد."
+      : e.target.value === "daily" ? "امضای روزانه سرپرست فعال شد."
+      : "کادر تأیید جامع سرپرست فعال شد.", "ok");
+});
+
 ["orgLeft","orgRight"].forEach(id => {
   $("#" + id).addEventListener("input", () => { updateHeaders(); scheduleSave(); });
 });
@@ -2083,13 +2346,21 @@ function collect(){
     name: $("#fsName" + i).value,
     date: $("#fsDate" + i).value
   }));
+  const supSigs = supPads.map(p => ({ sig: p.toData() }));
+  const supOverall = {
+    sig:   supOverallPad ? supOverallPad.toData() : "",
+    title: $("#supOverallTitle").value,
+    name:  $("#supOverallName").value,
+    date:  $("#supOverallDate").value,
+    note:  $("#supOverallNote").value
+  };
   return {
     version: 3,
     rowCount: ROWS,
     savedAt: new Date().toISOString(),
     project: projectEl.value,
     org: { left: $("#orgLeft").value, right: $("#orgRight").value },
-    customFields, info, rows, sigs, reports, finals
+    supMode, customFields, info, rows, sigs, reports, finals, supSigs, supOverall
   };
 }
 
@@ -2135,6 +2406,28 @@ function apply(data){
   if (Array.isArray(data.sigs)) data.sigs.slice(0,ROWS).forEach((s,i) =>
     dayPads[i].load(s && s.sig ? s.sig : "", true));
   if (data.reports) LONG_TEXTS.forEach(id => { $("#" + id).value = data.reports[id] || ""; });
+  applySupMode(data.supMode || "none", true);
+  // بارگذاری امضاها پس از نمایان‌شدن کادرها (وگرنه ابعاد بوم صفر است)
+  const supData = Array.isArray(data.supSigs) ? data.supSigs : null;
+  const soData = data.supOverall || {};
+  requestAnimationFrame(() => {
+    supPads.forEach((pd,i) => {
+      pd.resize();
+      const x = supData && supData[i];
+      pd.load(x && x.sig ? x.sig : "", true);
+    });
+    if (supOverallPad){
+      supOverallPad.resize();
+      supOverallPad.load(soData.sig || "", true);
+    }
+  });
+  if (supOverallPad){
+    const so = soData;
+    if (so.title) $("#supOverallTitle").value = so.title;
+    $("#supOverallName").value = so.name || "";
+    $("#supOverallDate").value = so.date || "";
+    $("#supOverallNote").value = so.note || "";
+  }
   if (Array.isArray(data.finals)) data.finals.slice(0,2).forEach((f,i) => {
     finalPads[i].load(f && f.sig ? f.sig : "", true);
     if (f && f.role) $("#fsRole" + i).value = f.role;
@@ -2154,6 +2447,11 @@ function refreshAll(){
   updateDensity();
   $$(".f-loc").forEach(el => el._refresh && el._refresh());
   $$(".f-desc").forEach(el => el._refresh && el._refresh());
+  ["supOverallTitle","supOverallName","supOverallNote"].forEach(id => {
+    const el = $("#" + id); if (el && el._refresh) el._refresh();
+  });
+  const sod = $('.pm[data-pm="supOverallDate"]');
+  if (sod) sod.textContent = toFaDigits($("#supOverallDate").value);
   [0,1].forEach(i => {
     const n = $(`.pm[data-pm="fsName${i}"]`), d = $(`.pm[data-pm="fsDate${i}"]`);
     const r = $(`.pm[data-pm="fsRole${i}"]`);
@@ -2276,6 +2574,8 @@ function updateDensity(){
 $("#btnPrint").addEventListener("click", () => {
   dayPads.forEach(p => p.setArmed(false));
   finalPads.forEach(p => p.setArmed(false));
+  supPads.forEach(p => p.setArmed(false));
+  if (supOverallPad) supOverallPad.setArmed(false);
   saveNow(true);
   LONG_TEXTS.forEach(id => autoGrow($("#" + id)));
   updateDensity();
@@ -2356,9 +2656,14 @@ function commitActiveWeek(){
 function switchWeek(id){
   if (id === workbook.activeId) return;
   commitActiveWeek();
+  const keepFields = customFields.slice();   // فیلدهای دلخواه مشترک بین همه هفته‌هاست
   workbook.activeId = id;
   const w = activeWeek();
-  if (w) apply(w.data || {});
+  if (w){
+    const d = w.data || {};
+    if (keepFields.length) d.customFields = keepFields;
+    apply(d);
+  }
   renderWeekTabs();
   saveWorkbook();
   setState("هفته «" + (w ? w.name : "") + "» باز شد", "saved");
@@ -2373,16 +2678,18 @@ function addWeek(fromCurrent){
   const w = { id: newId(), name, data: null };
 
   if (fromCurrent && cur && cur.data){
-    // کپی مشخصات ثابت، خالی‌کردن داده‌های روزانه
+    // فقط مشخصات هویتی منتقل می‌شود؛ تمام داده‌های کاری خالی می‌ماند
     const d = JSON.parse(JSON.stringify(cur.data));
-    if (Array.isArray(d.rows)) d.rows = d.rows.map(r => ({
-      date:"", ts_h:"", ts_m:"", te_h:"", te_m:"", loc: r.loc || "", desc:""
+    if (Array.isArray(d.rows)) d.rows = d.rows.map(() => ({
+      date:"", ts_h:"", ts_m:"", te_h:"", te_m:"", loc:"", desc:""
     }));
     if (Array.isArray(d.sigs)) d.sigs = d.sigs.map(() => ({ sig:"", date:"" }));
     if (d.reports) Object.keys(d.reports).forEach(k => d.reports[k] = "");
     if (Array.isArray(d.finals)) d.finals = d.finals.map(f => ({
       sig:"", role: f.role || "", name: f.name || "", date:""
     }));
+    if (Array.isArray(d.supSigs)) d.supSigs = d.supSigs.map(() => ({ sig:"" }));
+    if (d.supOverall) d.supOverall = { sig:"", name: d.supOverall.name || "", date:"", note:"" };
     if (d.info && d.info.week) d.info.week.value = name;
     d.savedAt = new Date().toISOString();
     w.data = d;
@@ -2466,9 +2773,7 @@ function copyFromPrev(silent){
     if (chk) chk.checked = d.checked !== false;
     if (inp && f.key !== "week") inp.value = d.value || "";
   });
-  if (Array.isArray(prev.rows)) prev.rows.slice(0, ROWS).forEach((r,i) => {
-    if ($$(".f-loc")[i] && !$$(".f-loc")[i].value) $$(".f-loc")[i].value = r.loc || "";
-  });
+  // فقط مشخصات هویتی کپی می‌شود — محل کار و شرح فعالیت دست‌نخورده می‌ماند
   if (Array.isArray(prev.finals)) prev.finals.slice(0,2).forEach((f,i) => {
     if (f && f.role) $("#fsRole" + i).value = f.role;
     if (f && f.name && !$("#fsName" + i).value) $("#fsName" + i).value = f.name;
@@ -2552,11 +2857,33 @@ function clearForm(ask){
   LONG_TEXTS.forEach(id => $("#" + id).value = "");
   dayPads.forEach(p => { p.clear(false); p.setArmed(false); });
   finalPads.forEach(p => { p.clear(false); p.setArmed(false); });
-  [0,1].forEach(i => { $("#fsName" + i).value = ""; $("#fsDate" + i).value = ""; });
+  const DEFAULT_ROLES = ["امضای کارآموز", "امضای سرپرست کارآموزی"];
+  [0,1].forEach(i => {
+    $("#fsName" + i).value = ""; $("#fsDate" + i).value = "";
+    $("#fsRole" + i).value = DEFAULT_ROLES[i];
+  });
+  // امضای سرپرست در صفحه اول
+  supPads.forEach(p => { p.clear(false); p.setArmed(false); });
+  if ($("#supOverallName")) $("#supOverallName").value = "";
+  if ($("#supOverallDate")) $("#supOverallDate").value = "";
+  if ($("#supOverallNote"))  $("#supOverallNote").value = "";
   refreshAll(); saveNow(true);
   if (ask) toast("فرم پاک شد.", "ok");
 }
 $("#btnClear").addEventListener("click", () => clearForm(true));
+
+/* پاک‌سازی کامل حافظه مرورگر — برای کامپیوترهای مشترک */
+$("#btnWipe").addEventListener("click", () => {
+  if (!confirm(
+    "همه‌ی هفته‌ها و تمام اطلاعات ذخیره‌شده از حافظه‌ی این مرورگر حذف می‌شود.\n" +
+    "این کار برگشت‌پذیر نیست — اگر نسخه‌ی پشتیبان می‌خواهید، اول «خروجی JSON» بگیرید.\n\n" +
+    "ادامه می‌دهید؟")) return;
+  try{
+    [WB_KEY, STORAGE_KEY, "internship_archive_v2",
+     "internship_tips_on", "internship_guide_open"].forEach(k => localStorage.removeItem(k));
+  }catch(e){}
+  location.reload();
+});
 
 document.addEventListener("keydown", e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s"){ e.preventDefault(); saveNow(false); }
@@ -2602,9 +2929,11 @@ document.addEventListener("keydown", e => {
   setTimeout(() => {
     dayPads.forEach(p => p.resize());
     finalPads.forEach(p => p.resize());
+    supPads.forEach(p => p.resize());
+    if (supOverallPad) supOverallPad.resize();
     syncProject();
   }, 70);
 })();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a244165b3e85cd3a',t:'MTc4NTU3OTM4Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a244422e9a39c4e4',t:'MTc4NTU4MTE4MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
